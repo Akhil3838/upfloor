@@ -424,7 +424,7 @@ export default function Home() {
                 </div>
                 <div className="content">
                     <h5 className="title">Sell a home</h5>
-                    <p className="description">Sell confidently with expert guidance and effective strategies, showcasing your property's best features for a successful sale.</p>
+                    <p className="description">Sell confidently with expert guidance and effective strategies, showcasing your propertys best features for a successful sale.</p>
                     <a href="sidebar-grid.html" className="tf-btn btn-line">Learn More <span className="icon icon-arrow-right2"></span></a>
                 </div>
             </div>
@@ -556,7 +556,7 @@ export default function Home() {
                     <div className="content">
                         <h5 className="title">Local Expertise,<br />
                             Personalized Service</h5>
-                        <p className="description">As a company rooted in Payyanur, Kannur, we bring local knowledge and a personal touch to every transaction. We're not just another real estate service-we're your neighbors, committed to helping you succeed.</p>
+                        <p className="description">As a company rooted in Payyanur, Kannur, we bring local knowledge and a personal touch to every transaction. Were not just another real estate service-were your neighbors, committed to helping you succeed.</p>
                     </div>
                 </a>
             </div>
