@@ -5,7 +5,7 @@ const PropertyCard = ({ properties }) => {
   return (
       <div className="homelengo-box">
         <div className="archive-top">
-          <Link href={'/propertyDetails'} className="images-group">
+          <a href={`/property/${properties.id}`} className="images-group">
             <div className="images-style">
 <img 
   className="lazyload" 
@@ -25,7 +25,7 @@ const PropertyCard = ({ properties }) => {
               </svg>
               {properties.location}
             </div>
-          </Link>
+          </a>
         </div>
 <div className="archive-bottom">
   <div className="content-top">

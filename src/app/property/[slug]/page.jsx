@@ -1,17 +1,31 @@
 'use client'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import GotoTop from '@/app/components/GotoTop'
-// import Header from '../components/Header'
 import Footer from '@/app/components/Footer'
-import { useParams } from 'next/navigation';
-import Header from '@/app/components/Header';
+import Header from '@/app/components/Header'
+import { useParams } from 'next/navigation'
+import { propertyApi } from '@/app/services/allApi'
 
-function property() {
-      const params = useParams();
-  const { slug } = params;
+function PropertyPage() {
+  const { slug } = useParams(); // ✅ works in client components
+  const [property,setProperty]=useState()
 
-  
-  
+  const fetchProperty = async () => {
+    try {
+      const result = await propertyApi(slug);
+      console.log("Fetched property:", result);
+      setProperty(result.data.data);
+    } catch (error) {
+      console.error("Error fetching property:", error);
+    }
+  };
+console.log(property);
+
+  useEffect(() => {
+    if (slug) {
+      fetchProperty();
+    }
+  }, [slug]);
   return (
  <>
    <div id='wrapper'>
@@ -23,46 +37,92 @@ function property() {
       <div className="container">
         <div className="header-property-detail">
           <div className="content-top d-flex justify-content-between align-items-center">
-            <h3 className="title link fw-8">Lakeview Haven, Lake Tahoe</h3>
+            <h3 className="title link fw-8">{property?.property?.sub_type}</h3>
             <div className="box-price d-flex align-items-end">
-              <h3 className="fw-8">$250,00</h3>
+              <h3 className="fw-8">₹{property?.property?.price}</h3>
               <span className="body-1 text-variant-1">/month</span>
             </div>
           </div>
 
           <div className="content-bottom">
-            <div className="box-left">
-              <div className="info-box">
-                <div className="label">Features</div>
-                <ul className="meta">
-                  <li className="meta-item">
-                    <i className="icon icon-bed"></i>
-                    <span className="text-variant-1">Beds:</span>
-                    <span className="fw-6">3</span>
-                  </li>
-                  <li className="meta-item">
-                    <i className="icon icon-bath"></i>
-                    <span className="text-variant-1">Baths:</span>
-                    <span className="fw-6">2</span>
-                  </li>
-                  <li className="meta-item">
-                    <i className="icon icon-sqft"></i>
-                    <span className="text-variant-1">Sqft:</span>
-                    <span className="fw-6">1150</span>
-                  </li>
-                </ul>
-              </div>
+<div className="box-left">
+  <div className="info-box">
+    <div className="label">Features</div>
+    {property?.property?.property_type?.toLowerCase() === "residential" ? (
+      <ul className="meta">
+        {property?.property?.house_details?.no_of_bedrooms && (
+          <li className="meta-item">
+            <i className="icon icon-bed"></i>
+            <span className="text-variant-1">Beds:</span>
+            <span className="fw-6">{property?.property?.house_details?.no_of_bedrooms}</span>
+          </li>
+        )}
+        {property?.property?.house_details?.no_of_bathrooms && (
+          <li className="meta-item">
+            <i className="icon icon-bath"></i>
+            <span className="text-variant-1">Baths:</span>
+            <span className="fw-6">{property?.property?.house_details?.no_of_bathrooms}</span>
+          </li>
+        )}
+        {property?.property?.house_details?.floor_area && (
+          <li className="meta-item">
+            <i className="icon icon-sqft"></i>
+            <span className="text-variant-1">Sqft:</span>
+            <span className="fw-6">{property?.property?.house_details?.floor_area}</span>
+          </li>
+        )}
+        {property?.property?.house_details?.total_floors && (
+          <li className="meta-item">
+            <i className="icon icon-building"></i>
+            <span className="text-variant-1">Floors:</span>
+            <span className="fw-6">{property?.property?.house_details?.total_floors}</span>
+          </li>
+        )}
+      </ul>
+    ) : (
+      <ul className="meta">
+        {property?.property?.plot_details?.plot_area && (
+          <li className="meta-item">
+            <i className="icon icon-sqft"></i>
+            <span className="text-variant-1">Plot Area:</span>
+            <span className="fw-6">{property?.property?.plot_details?.plot_area} Cent</span>
+          </li>
+        )}
+        {property?.property?.plot_details?.plot_facing && (
+          <li className="meta-item">
+            <i className="icon icon-compass"></i>
+            <span className="text-variant-1">Plot Facing:</span>
+            <span className="fw-6">{property?.property?.plot_details?.plot_facing}</span>
+          </li>
+        )}
+        {property?.property?.plot_details?.no_of_open_sides && (
+          <li className="meta-item">
+            <i className="icon icon-maximize"></i>
+            <span className="text-variant-1">Open Sides:</span>
+            <span className="fw-6">{property?.property?.plot_details?.no_of_open_sides}</span>
+          </li>
+        )}
+        {property?.property?.plot_details?.road_with_facing && (
+          <li className="meta-item">
+            <i className="icon icon-road"></i>
+            <span className="text-variant-1">Road Width:</span>
+            <span className="fw-6">{property?.property?.plot_details?.road_with_facing} m</span>
+          </li>
+        )}
+      </ul>
+    )}
+  </div>
 
-              <div className="info-box">
-                <div className="label">Location</div>
-                <p className="meta-item">
-                  <span className="icon icon-mapPin"></span>
-                  <span className="text-variant-1">
-                    145 Brooklyn Ave, Califonia, New York
-                  </span>
-                </p>
-              </div>
-            </div>
+  <div className="info-box">
+    <div className="label">Location</div>
+    <p className="meta-item">
+      <span className="icon icon-mapPin"></span>
+      <span className="text-variant-1">
+        {property?.property?.location || "Location not available"}
+      </span>
+    </p>
+  </div>
+</div>
 
             <ul className="icon-box">
               <li>
@@ -156,117 +216,69 @@ function property() {
 
 
      <div>
-      <div className="container">
-        <div className="single-property-gallery">
-          <div className="position-relative">
-            <div dir="ltr" className="swiper sw-single">
-              <div className="swiper-wrapper">
-                <div className="swiper-slide">
-                  <div className="image-sw-single">
-                    <img src="images/banner/banner-property-12.jpg" alt="property" />
-                  </div>
-                </div>
-                <div className="swiper-slide">
-                  <div className="image-sw-single">
-                    <img src="images/banner/banner-property-11.jpg" alt="property" />
-                  </div>
-                </div>
-                <div className="swiper-slide">
-                  <div className="image-sw-single">
-                    <img src="images/banner/banner-property-10.jpg" alt="property" />
-                  </div>
-                </div>
-                <div className="swiper-slide">
-                  <div className="image-sw-single">
-                    <img src="images/banner/banner-property-13.jpg" alt="property" />
-                  </div>
-                </div>
-                <div className="swiper-slide">
-                  <div className="image-sw-single">
-                    <img src="images/banner/banner-property-10.jpg" alt="property" />
-                  </div>
-                </div>
-                <div className="swiper-slide">
-                  <div className="image-sw-single">
-                    <img src="images/banner/banner-property-11.jpg" alt="property" />
-                  </div>
-                </div>
-                <div className="swiper-slide">
-                  <div className="image-sw-single">
-                    <img src="images/banner/banner-property-10.jpg" alt="property" />
-                  </div>
-                </div>
-                <div className="swiper-slide">
-                  <div className="image-sw-single">
-                    <img src="images/banner/banner-property-13.jpg" alt="property" />
-                  </div>
-                </div>
-              </div>
-            </div>
+<div className="container">
+  <div className="single-property-gallery">
+    <div className="position-relative">
 
-            <div className="box-navigation">
-              <div className="navigation swiper-nav-next nav-next-single">
-                <span className="icon icon-arr-l"></span>
-              </div>
-              <div className="navigation swiper-nav-prev nav-prev-single">
-                <span className="icon icon-arr-r"></span>
-              </div>
-            </div>
-          </div>
-
-          <div dir="ltr" className="swiper thumbs-sw-pagi">
-            <div className="swiper-wrapper">
-              <div className="swiper-slide">
-                <div className="img-thumb-pagi">
-                  <img src="images/banner/thumb-sw1.jpg" alt="thumb" />
-                </div>
-              </div>
-              <div className="swiper-slide">
-                <div className="img-thumb-pagi">
-                  <img src="images/banner/thumb-sw2.jpg" alt="thumb" />
-                </div>
-              </div>
-              <div className="swiper-slide">
-                <div className="img-thumb-pagi">
-                  <img src="images/banner/thumb-sw3.jpg" alt="thumb" />
-                </div>
-              </div>
-              <div className="swiper-slide">
-                <div className="img-thumb-pagi">
-                  <img src="images/banner/thumb-sw4.jpg" alt="thumb" />
-                </div>
-              </div>
-              <div className="swiper-slide">
-                <div className="img-thumb-pagi">
-                  <img src="images/banner/thumb-sw5.jpg" alt="thumb" />
-                </div>
-              </div>
-              <div className="swiper-slide">
-                <div className="img-thumb-pagi">
-                  <img src="images/banner/thumb-sw6.jpg" alt="thumb" />
-                </div>
-              </div>
-              <div className="swiper-slide">
-                <div className="img-thumb-pagi">
-                  <img src="images/banner/thumb-sw7.jpg" alt="thumb" />
-                </div>
-              </div>
-              <div className="swiper-slide">
-                <div className="img-thumb-pagi">
-                  <img src="images/banner/thumb-sw8.jpg" alt="thumb" />
-                </div>
+      {/* Main Gallery */}
+      <div dir="ltr" className="swiper sw-single">
+        <div className="swiper-wrapper">
+          {(property?.house_images?.length > 0
+            ? property?.house_images
+            : property?.plot_images
+          )?.map((img, index) => (
+            <div className="swiper-slide" key={index}>
+              <div className="image-sw-single">
+                 <img
+              src={img?.file_name}
+              alt={`property-${index}`}
+              style={{ width: "1290px", height: "680px", objectFit: "cover" }}
+            />
               </div>
             </div>
-          </div>
+          ))}
         </div>
       </div>
+
+      {/* Navigation Arrows */}
+      <div className="box-navigation">
+        <div className="navigation swiper-nav-next nav-next-single">
+          <span className="icon icon-arr-l"></span>
+        </div>
+        <div className="navigation swiper-nav-prev nav-prev-single">
+          <span className="icon icon-arr-r"></span>
+        </div>
+      </div>
+    </div>
+
+    {/* Thumbnails */}
+    <div dir="ltr" className="swiper thumbs-sw-pagi">
+      <div className="swiper-wrapper">
+        {(property?.house_images?.length > 0
+          ? property?.house_images
+          : property?.plot_images
+        )?.map((img, index) => (
+          <div className="swiper-slide" key={`thumb-${index}`}>
+            <div className="img-thumb-pagi">
+                <img
+              src={img?.file_name}
+              alt={`thumb-${index}`}
+              style={{ width: "149px", height: "111px", objectFit: "cover" }}
+            />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
     </div>
 
     <section className='flat-section-v3 flat-property-detail'>
        <div className="container">
         <div className="row">
             <div className='col-xl-8 col-lg-7'>
-                <div className="single-property-element single-property-desc">
+                {/* <div className="single-property-element single-property-desc">
   <h5 className="fw-6 title">Description</h5>
   <p className="text-variant-1">
     Located around an hour away from Paris, between the Perche and the Iton valley, 
@@ -280,197 +292,346 @@ function property() {
   <a href="#" className="btn-view">
     <span className="text">View More</span>
   </a>
-                </div>
+                </div> */}
 
-                <div className="single-property-element single-property-overview">
+<div className="single-property-element single-property-overview">
   <h6 className="title fw-6">Overview</h6>
   <ul className="info-box">
-    <li className="item">
-      <a href="#" className="box-icon w-52">
-        <i className="icon icon-house-line"></i>
-      </a>
-      <div className="content">
-        <span className="label">ID:</span>
-        <span>2297</span>
-      </div>
-    </li>
-    <li className="item">
-      <a href="#" className="box-icon w-52">
-        <i className="icon icon-sliders-horizontal"></i>
-      </a>
-      <div className="content">
-        <span className="label">Type:</span>
-        <span>House</span>
-      </div>
-    </li>
-    <li className="item">
-      <a href="#" className="box-icon w-52">
-        <i className="icon icon-garage"></i>
-      </a>
-      <div className="content">
-        <span className="label">Garages:</span>
-        <span>1</span>
-      </div>
-    </li>
-    <li className="item">
-      <a href="#" className="box-icon w-52">
-        <i className="icon icon-bed1"></i>
-      </a>
-      <div className="content">
-        <span className="label">Bedrooms:</span>
-        <span>2 Rooms</span>
-      </div>
-    </li>
-    <li className="item">
-      <a href="#" className="box-icon w-52">
-        <i className="icon icon-bathtub"></i>
-      </a>
-      <div className="content">
-        <span className="label">Bathrooms:</span>
-        <span>2 Rooms</span>
-      </div>
-    </li>
-    <li className="item">
-      <a href="#" className="box-icon w-52">
-        <i className="icon icon-crop"></i>
-      </a>
-      <div className="content">
-        <span className="label">Land Size:</span>
-        <span>2,000 SqFt</span>
-      </div>
-    </li>
-    <li className="item">
-      <a href="#" className="box-icon w-52">
-        <i className="icon icon-hammer"></i>
-      </a>
-      <div className="content">
-        <span className="label">Year Built:</span>
-        <span>2024</span>
-      </div>
-    </li>
-    <li className="item">
-      <a href="#" className="box-icon w-52">
-        <i className="icon icon-ruler"></i>
-      </a>
-      <div className="content">
-        <span className="label">Size:</span>
-        <span>900 SqFt</span>
-      </div>
-    </li>
+    {/* ID */}
+    {property?.property?.id && (
+      <li className="item">
+        <a href="#" className="box-icon w-52">
+          <i className="icon icon-house-line"></i>
+        </a>
+        <div className="content">
+          <span className="label">ID:</span>
+          <span>{property?.property?.id}</span>
+        </div>
+      </li>
+    )}
+
+    {/* Type */}
+    {property?.property?.property_type && (
+      <li className="item">
+        <a href="#" className="box-icon w-52">
+          <i className="icon icon-sliders-horizontal"></i>
+        </a>
+        <div className="content">
+          <span className="label">Type:</span>
+          <span>{property?.property?.property_type}</span>
+        </div>
+      </li>
+    )}
+
+    {/* Conditional for Residential */}
+    {property?.property?.property_type?.toLowerCase() === "residential" ? (
+      <>
+        {property?.property?.house_details?.no_of_garages && (
+          <li className="item">
+            <a href="#" className="box-icon w-52">
+              <i className="icon icon-garage"></i>
+            </a>
+            <div className="content">
+              <span className="label">Garages:</span>
+              <span>{property?.property?.house_details?.no_of_garages}</span>
+            </div>
+          </li>
+        )}
+
+        {property?.property?.house_details?.no_of_bedrooms && (
+          <li className="item">
+            <a href="#" className="box-icon w-52">
+              <i className="icon icon-bed1"></i>
+            </a>
+            <div className="content">
+              <span className="label">Bedrooms:</span>
+              <span>{property?.property?.house_details?.no_of_bedrooms} Rooms</span>
+            </div>
+          </li>
+        )}
+
+        {property?.property?.house_details?.no_of_bathrooms && (
+          <li className="item">
+            <a href="#" className="box-icon w-52">
+              <i className="icon icon-bathtub"></i>
+            </a>
+            <div className="content">
+              <span className="label">Bathrooms:</span>
+              <span>{property?.property?.house_details?.no_of_bathrooms} Rooms</span>
+            </div>
+          </li>
+        )}
+
+        {property?.property?.house_details?.land_size && (
+          <li className="item">
+            <a href="#" className="box-icon w-52">
+              <i className="icon icon-crop"></i>
+            </a>
+            <div className="content">
+              <span className="label">Land Size:</span>
+              <span>{property?.property?.house_details?.land_size} SqFt</span>
+            </div>
+          </li>
+        )}
+
+        {property?.property?.house_details?.year_built && (
+          <li className="item">
+            <a href="#" className="box-icon w-52">
+              <i className="icon icon-hammer"></i>
+            </a>
+            <div className="content">
+              <span className="label">Year Built:</span>
+              <span>{property?.property?.house_details?.year_built}</span>
+            </div>
+          </li>
+        )}
+
+        {property?.property?.house_details?.floor_area && (
+          <li className="item">
+            <a href="#" className="box-icon w-52">
+              <i className="icon icon-ruler"></i>
+            </a>
+            <div className="content">
+              <span className="label">Size:</span>
+              <span>{property?.property?.house_details?.floor_area} SqFt</span>
+            </div>
+          </li>
+        )}
+      </>
+    ) : (
+      <>
+        {/* Conditional for Plot */}
+        {property?.property?.plot_details?.plot_area && (
+          <li className="item">
+            <a href="#" className="box-icon w-52">
+              <i className="icon icon-crop"></i>
+            </a>
+            <div className="content">
+              <span className="label">Plot Area:</span>
+              <span>{property?.property?.plot_details?.plot_area} Cent</span>
+            </div>
+          </li>
+        )}
+
+        {property?.property?.plot_details?.plot_facing && (
+          <li className="item">
+            <a href="#" className="box-icon w-52">
+              <i className="icon icon-compass"></i>
+            </a>
+            <div className="content">
+              <span className="label">Plot Facing:</span>
+              <span>{property?.property?.plot_details?.plot_facing}</span>
+            </div>
+          </li>
+        )}
+
+        {property?.property?.plot_details?.no_of_open_sides && (
+          <li className="item">
+            <a href="#" className="box-icon w-52">
+              <i className="icon icon-maximize"></i>
+            </a>
+            <div className="content">
+              <span className="label">Open Sides:</span>
+              <span>{property?.property?.plot_details?.no_of_open_sides}</span>
+            </div>
+          </li>
+        )}
+
+        {property?.property?.plot_details?.road_with_facing && (
+          <li className="item">
+            <a href="#" className="box-icon w-52">
+              <i className="icon icon-road"></i>
+            </a>
+            <div className="content">
+              <span className="label">Road Width:</span>
+              <span>{property?.property?.plot_details?.road_with_facing} m</span>
+            </div>
+          </li>
+        )}
+      </>
+    )}
   </ul>
-                  </div>
+</div>
 
-                  <div className="single-property-element single-property-video">
-  <h5 className="title fw-6">Video</h5>
-  <div className="img-video">
-    <img src="images/banner/img-video.jpg" alt="img-video" />
-    <a
-      href="https://youtu.be/MLpWrANjFbI"
-      data-fancybox="gallery2"
-      className="btn-video"
-    >
-      <span className="icon icon-play"></span>
-    </a>
+{property?.plot_videos ? (
+  <div className="single-property-element single-property-video">
+    <h5 className="title fw-6">Video</h5>
+    <div className="img-video">
+      <img
+        src="images/banner/img-video.jpg"
+        alt="img-video"
+        style={{ width: "100%", height: "auto" }}
+      />
+      <a
+        href={property?.plot_videos}
+        data-fancybox="gallery2"
+        className="btn-video"
+      >
+        <span className="icon icon-play"></span>
+      </a>
+    </div>
   </div>
-                  </div>
+) : (
+  <></>
+)}
 
-                  <div className="single-property-element single-property-info">
+<div className="single-property-element single-property-info">
   <h5 className="title fw-6">Property Details</h5>
   <div className="row">
-    <div className="col-md-6">
-      <div className="inner-box">
-        <span className="label text-black-3">ID:</span>
-        <div className="content text-black-3">#1234</div>
+    {/* ID */}
+    {property?.property?.id && (
+      <div className="col-md-6">
+        <div className="inner-box">
+          <span className="label text-black-3">ID:</span>
+          <div className="content text-black-3">#{property?.property?.id}</div>
+        </div>
       </div>
-    </div>
-    <div className="col-md-6">
-      <div className="inner-box">
-        <span className="label text-black-3">Beds</span>
-        <div className="content text-black-3">7.328</div>
-      </div>
-    </div>
-    <div className="col-md-6">
-      <div className="inner-box">
-        <span className="label text-black-3">Price</span>
-        <div className="content text-black-3">$7,500</div>
-      </div>
-    </div>
-    <div className="col-md-6">
-      <div className="inner-box">
-        <span className="label text-black-3">Year built</span>
-        <div className="content text-black-3">2024</div>
-      </div>
-    </div>
-    <div className="col-md-6">
-      <div className="inner-box">
-        <span className="label text-black-3">Size</span>
-        <div className="content text-black-3">150 sqft</div>
-      </div>
-    </div>
-    <div className="col-md-6">
-      <div className="inner-box">
-        <span className="label text-black-3">Type</span>
-        <div className="content text-black-3">Villa</div>
-      </div>
-    </div>
-    <div className="col-md-6">
-      <div className="inner-box">
-        <span className="label text-black-3">Rooms</span>
-        <div className="content text-black-3">9</div>
-      </div>
-    </div>
-    <div className="col-md-6">
-      <div className="inner-box">
-        <span className="label text-black-3">Status</span>
-        <div className="content text-black-3">For sale</div>
-      </div>
-    </div>
-    <div className="col-md-6">
-      <div className="inner-box">
-        <span className="label text-black-3">Baths</span>
-        <div className="content text-black-3">3</div>
-      </div>
-    </div>
-    <div className="col-md-6">
-      <div className="inner-box">
-        <span className="label text-black-3">Garage</span>
-        <div className="content text-black-3">1</div>
-      </div>
-    </div>
-  </div>
-                    </div>
+    )}
 
-                  <div className="single-property-element single-property-feature">
-  <h5 className="title fw-6">Amenities and features</h5>
-  <div className="wrap-feature">
-    <div className="box-feature">
-      <ul>
-        <li className="feature-item">Smoke alarm</li>
-        <li className="feature-item">Carbon monoxide alarm</li>
-        <li className="feature-item">First aid kit</li>
-        <li className="feature-item">Self check-in with lockbox</li>
-        <li className="feature-item">Security cameras</li>
-      </ul>
-    </div>
-    <div className="box-feature">
-      <ul>
-        <li className="feature-item">Hangers</li>
-        <li className="feature-item">Bed linens</li>
-        <li className="feature-item">Extra pillows &amp; blankets</li>
-        <li className="feature-item">Iron</li>
-        <li className="feature-item">TV with standard cable</li>
-      </ul>
-    </div>
-    <div className="box-feature">
-      <ul>
-        <li className="feature-item">Refrigerator</li>
-        <li className="feature-item">Microwave</li>
-        <li className="feature-item">Dishwasher</li>
-        <li className="feature-item">Coffee maker</li>
-      </ul>
-    </div>
+    {/* Beds (Residential only) */}
+    {property?.property?.property_type?.toLowerCase() === "residential" &&
+      property?.property?.house_details?.no_of_bedrooms && (
+        <div className="col-md-6">
+          <div className="inner-box">
+            <span className="label text-black-3">Beds</span>
+            <div className="content text-black-3">
+              {property?.property?.house_details?.no_of_bedrooms}
+            </div>
+          </div>
+        </div>
+      )}
+
+    {/* Price */}
+    {property?.property?.price && (
+      <div className="col-md-6">
+        <div className="inner-box">
+          <span className="label text-black-3">Price</span>
+          <div className="content text-black-3">
+            ${property?.property?.price}
+          </div>
+        </div>
+      </div>
+    )}
+
+    {/* Year Built (Residential only) */}
+    {property?.property?.property_type?.toLowerCase() === "residential" &&
+      property?.property?.house_details?.year_built && (
+        <div className="col-md-6">
+          <div className="inner-box">
+            <span className="label text-black-3">Year Built</span>
+            <div className="content text-black-3">
+              {property?.property?.house_details?.year_built}
+            </div>
+          </div>
+        </div>
+      )}
+
+    {/* Size */}
+    {(property?.property?.house_details?.floor_area ||
+      property?.property?.plot_details?.plot_area) && (
+      <div className="col-md-6">
+        <div className="inner-box">
+          <span className="label text-black-3">Size</span>
+          <div className="content text-black-3">
+            {property?.property?.property_type?.toLowerCase() ===
+            "residential"
+              ? `${property?.property?.house_details?.floor_area} SqFt`
+              : `${property?.property?.plot_details?.plot_area} Cent`}
+          </div>
+        </div>
+      </div>
+    )}
+
+    {/* Type */}
+    {property?.property?.property_type && (
+      <div className="col-md-6">
+        <div className="inner-box">
+          <span className="label text-black-3">Type</span>
+          <div className="content text-black-3">
+            {property?.property?.property_type}
+          </div>
+        </div>
+      </div>
+    )}
+
+    {/* Rooms (Residential only) */}
+    {property?.property?.property_type?.toLowerCase() === "residential" &&
+      property?.property?.house_details?.total_rooms && (
+        <div className="col-md-6">
+          <div className="inner-box">
+            <span className="label text-black-3">Rooms</span>
+            <div className="content text-black-3">
+              {property?.property?.house_details?.total_rooms}
+            </div>
+          </div>
+        </div>
+      )}
+
+    {/* Status */}
+    {property?.property?.status && (
+      <div className="col-md-6">
+        <div className="inner-box">
+          <span className="label text-black-3">Status</span>
+          <div className="content text-black-3">
+            {property?.property?.status}
+          </div>
+        </div>
+      </div>
+    )}
+
+    {/* Baths (Residential only) */}
+    {property?.property?.property_type?.toLowerCase() === "residential" &&
+      property?.property?.house_details?.no_of_bathrooms && (
+        <div className="col-md-6">
+          <div className="inner-box">
+            <span className="label text-black-3">Baths</span>
+            <div className="content text-black-3">
+              {property?.property?.house_details?.no_of_bathrooms}
+            </div>
+          </div>
+        </div>
+      )}
+
+    {/* Garage (Residential only) */}
+    {property?.property?.property_type?.toLowerCase() === "residential" &&
+      property?.property?.house_details?.no_of_garages && (
+        <div className="col-md-6">
+          <div className="inner-box">
+            <span className="label text-black-3">Garage</span>
+            <div className="content text-black-3">
+              {property?.property?.house_details?.no_of_garages}
+            </div>
+          </div>
+        </div>
+      )}
   </div>
-                     </div>
+</div>
+
+<div className="single-property-element single-property-feature">
+  <h5 className="title fw-6">Features</h5>
+  <div className="wrap-feature">
+    {property?.property?.new_additional_features &&
+      property.property.new_additional_features
+        .reduce((acc, item, index) => {
+          const chunkIndex = Math.floor(index / 3); // 3 items per column
+          if (!acc[chunkIndex]) acc[chunkIndex] = [];
+          acc[chunkIndex].push(item);
+          return acc;
+        }, [])
+        .map((chunk, colIndex) => (
+          <div className="box-feature" key={colIndex}>
+            <ul>
+              {chunk.map((item, i) => (
+                <li className="feature-item" key={i}>
+                  <strong>{item.additional_feature}</strong>
+                  {item.no_of_features ? ` (${item.no_of_features})` : ""}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+  </div>
+</div>
 
                   <div className="single-property-element single-property-map">
   <h5 className="title fw-6">Map location</h5>
@@ -963,4 +1124,4 @@ function property() {
   )
 }
 
-export default property
+export default PropertyPage
