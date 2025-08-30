@@ -10,7 +10,9 @@ const PropertyCard = ({ properties }) => {
 <img 
   className="lazyload" 
   src={properties.image} 
-  alt={properties.sub_type} 
+  alt={properties.sub_type}
+  style={{ width: "100%", height: "300px", objectFit: "cover", borderRadius: "8px" }} 
+ 
 />
             </div>
             <div className="top">
@@ -67,7 +69,7 @@ const PropertyCard = ({ properties }) => {
       </ul>
     )}
   </div>
-          <div className="content-bottom">
+          <div className="content-bottom  d-flex justify-content-between">
             <div className="d-flex gap-8 align-items-center">
               <div className="avatar avt-40 round">
                 <img src="images/avatar/avt-png1.png" alt="agent" />

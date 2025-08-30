@@ -1,17 +1,18 @@
 import { imageUrl } from "@/app/services/serverUrl";
 import React from "react";
 
-function PropertyCard({ image, sub_type, location, bed, bath, sqrfeet, price, agent,property_type,cent,plot_facing,no_of_open_sides }) {
+function PropertyCard({ image, sub_type, location, bed, bath, sqrfeet, price, agent,property_type,cent,plot_facing,no_of_open_sides,id }) {
   return (
     <div className="col-xl-4 col-lg-6 col-md-6">
       <div className="homelengo-box">
         <div className="archive-top">
-          <a href="property-details-v1.html" className="images-group">
+          <a href={`/property/${id}`} className="images-group">
             <div className="images-style">
 <img 
   className="lazyload" 
   src={image} 
   alt={sub_type} 
+  style={{ width: "100%", height: "300px", objectFit: "cover", borderRadius: "8px" }} 
 />
             </div>
             <div className="top">
@@ -68,7 +69,7 @@ function PropertyCard({ image, sub_type, location, bed, bath, sqrfeet, price, ag
       </ul>
     )}
   </div>
-          <div className="content-bottom">
+          <div className="content-bottom d-flex justify-content-between">
             <div className="d-flex gap-8 align-items-center">
               <div className="avatar avt-40 round">
                 <img src="images/avatar/avt-png1.png" alt="agent" />

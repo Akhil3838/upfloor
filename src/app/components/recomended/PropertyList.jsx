@@ -8,7 +8,7 @@ function PropertyList({ properties }) {
         <PropertyCard key={index} {...p} />
       ))}
       <div className="text-center">
-        <a href="sidebar-grid.html" className="tf-btn btn-view primary size-1 hover-btn-view">
+        <a href="/propertyList" className="tf-btn btn-view primary size-1 hover-btn-view">
           View All Properties <span className="icon icon-arrow-right2"></span>
         </a>
       </div>

@@ -5,6 +5,7 @@ import Footer from '@/app/components/Footer'
 import Header from '@/app/components/Header'
 import { useParams } from 'next/navigation'
 import { propertyApi } from '@/app/services/allApi'
+import LatestProperties from '@/app/components/LatestProperties'
 
 function PropertyPage() {
   const { slug } = useParams(); // ✅ works in client components
@@ -635,48 +636,48 @@ console.log(property);
 
                   <div className="single-property-element single-property-map">
   <h5 className="title fw-6">Map location</h5>
-  <iframe
-    className="map"
-    src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d135905.11693909427!2d-73.95165795400088!3d41.17584829642291!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1727094281524!5m2!1sen!2s"
-    height="478"
-    style={{ border: 0 }}
-    allowFullScreen=""
-    loading="lazy"
-    referrerPolicy="no-referrer-when-downgrade"
-  ></iframe>
+<iframe
+  className="map"
+  src={`https://www.google.com/maps?q=${property?.property?.lat},${property?.property?.lng}&hl=es;z=14&output=embed`}
+  height="478"
+  style={{ border: 0, width: "100%" }}
+  allowFullScreen=""
+  loading="lazy"
+  referrerPolicy="no-referrer-when-downgrade"
+/>
 
   <div className="info-map">
     <ul className="box-left">
       <li>
         <span className="label fw-6">Address</span>
-        <div className="text text-variant-1">150 sqft</div>
+        <div className="text text-variant-1">{property?.property?.location}</div>
       </li>
       <li>
         <span className="label fw-6">City</span>
-        <div className="text text-variant-1">#1234</div>
+        <div className="text text-variant-1">{property?.property?.city}</div>
       </li>
       <li>
-        <span className="label fw-6">State/county</span>
-        <div className="text text-variant-1">$7,500</div>
+        <span className="label fw-6">State/county/District</span>
+        <div className="text text-variant-1">Kerala</div>
       </li>
     </ul>
     <ul className="box-right">
       <li>
         <span className="label fw-6">Postal code</span>
-        <div className="text text-variant-1">7.328</div>
+        <div className="text text-variant-1">{property?.property?.pincode}</div>
       </li>
       <li>
         <span className="label fw-6">Area</span>
-        <div className="text text-variant-1">7.328</div>
+        <div className="text text-variant-1">{property?.property?.city}</div>
       </li>
       <li>
         <span className="label fw-6">Country</span>
-        <div className="text text-variant-1">2024</div>
+        <div className="text text-variant-1">India</div>
       </li>
     </ul>
   </div>
                     </div>
-                    <div className="single-property-element single-property-floor">
+                    {/* <div className="single-property-element single-property-floor">
   <h5 className="title fw-6">Floor plans</h5>
   <ul className="box-floor" id="parent-floor">
     <li className="floor-item">
@@ -754,8 +755,8 @@ console.log(property);
     </li>
   </ul>
                     </div>
-
-                    <div className="single-property-element single-property-attachments">
+ */}
+                    {/* <div className="single-property-element single-property-attachments">
   <h6 className="title fw-6">File Attachments</h6>
   <div className="row">
     <div className="col-sm-6">
@@ -777,9 +778,9 @@ console.log(property);
       </a>
     </div>
   </div>
-                       </div>
+                       </div> */}
 
-                       <div className="single-property-element single-property-explore">
+                       {/* <div className="single-property-element single-property-explore">
   <h5 className="title fw-6">Explore Property</h5>
   <div className="box-img">
     <img src="images/banner/img-explore.jpg" alt="img" />
@@ -787,7 +788,7 @@ console.log(property);
       <span className="icon icon-360"></span>
     </div>
   </div>
-                         </div>
+                         </div> */}
 
                          <div className="single-property-element single-property-loan">
   <h5 className="title fw-6">Loan Calculator</h5>
@@ -827,48 +828,30 @@ console.log(property);
     Explore nearby amenities to precisely locate your property and identify surrounding conveniences, 
     providing a comprehensive overview of the living environment and the property's convenience.
   </p>
-  <div className="row box-nearby">
-    <div className="col-md-5">
-      <ul className="box-left">
-        <li className="item-nearby">
-          <span className="label">School:</span>
-          <span className="fw-7">0.7 km</span>
-        </li>
-        <li className="item-nearby">
-          <span className="label">University:</span>
-          <span className="fw-7">1.3 km</span>
-        </li>
-        <li className="item-nearby">
-          <span className="label">Grocery center:</span>
-          <span className="fw-7">0.6 km</span>
-        </li>
-        <li className="item-nearby">
-          <span className="label">Market:</span>
-          <span className="fw-7">1.1 km</span>
-        </li>
-      </ul>
-    </div>
-    <div className="col-md-5">
-      <ul className="box-right">
-        <li className="item-nearby">
-          <span className="label">Hospital:</span>
-          <span className="fw-7">0.4 km</span>
-        </li>
-        <li className="item-nearby">
-          <span className="label">Metro station:</span>
-          <span className="fw-7">1.8 km</span>
-        </li>
-        <li className="item-nearby">
-          <span className="label">Gym, wellness:</span>
-          <span className="fw-7">1.3 km</span>
-        </li>
-        <li className="item-nearby">
-          <span className="label">River:</span>
-          <span className="fw-7">2.1 km</span>
-        </li>
-      </ul>
-    </div>
-  </div>
+<div className="row box-nearby">
+  {/* Split amenities into 2 equal chunks */}
+  {property?.property?.amenities &&
+    [0, 1].map((col) => (
+      <div className="col-md-5" key={col}>
+        <ul className={col === 0 ? "box-left" : "box-right"}>
+          {property.property.amenities
+            .filter((_, index) =>
+              col === 0
+                ? index < Math.ceil(property.property.amenities.length / 2)
+                : index >= Math.ceil(property.property.amenities.length / 2)
+            )
+            .map((item, index) => (
+              <li className="item-nearby" key={index}>
+                <span className="label">{item.amenities}:</span>
+                <span className="fw-7">
+                  {item.distance_from_property} km
+                </span>
+              </li>
+            ))}
+        </ul>
+      </div>
+    ))}
+</div>
                               </div>
 
 
@@ -1067,49 +1050,7 @@ console.log(property);
         </div>
 
         {/* Latest Properties */}
-        <div className="box-latest-property">
-          <h5 className="fw-6 title">Latest Properties</h5>
-          <ul>
-            {[
-              "images/home/house-8.jpg",
-              "images/home/house-3.jpg",
-              "images/home/house-28.jpg",
-              "images/home/house-29.jpg",
-              "images/home/house-19.jpg",
-            ].map((img, idx) => (
-              <li className="latest-property-item" key={idx}>
-                <a href="property-details-v1.html" className="images-style">
-                  <img src={img} alt="property" />
-                </a>
-                <div className="content">
-                  <div className="text-capitalize text-btn">
-                    <a href="property-details-v1.html" className="link">
-                      Casa Lomas de Machalí Machas
-                    </a>
-                  </div>
-                  <ul className="meta-list mt-6">
-                    <li className="item">
-                      <i className="icon icon-bed"></i>
-                      <span className="text-variant-1">Beds:</span>
-                      <span className="fw-6">3</span>
-                    </li>
-                    <li className="item">
-                      <i className="icon icon-bath"></i>
-                      <span className="text-variant-1">Baths:</span>
-                      <span className="fw-6">2</span>
-                    </li>
-                    <li className="item">
-                      <i className="icon icon-sqft"></i>
-                      <span className="text-variant-1">Sqft:</span>
-                      <span className="fw-6">1150</span>
-                    </li>
-                  </ul>
-                  <div className="mt-10 text-btn">$7250,00</div>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <LatestProperties/>
       </div>
     </div>
             </div>
