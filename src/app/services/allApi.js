@@ -16,5 +16,14 @@ export const propertyApi =async(id)=>{
     return await commonApi('GET',`${serverUrl}/get-property-detail-web/${id}`,"","")
 }
 
+export const blogApi =async()=>{
+    return await commonApi('GET',`${serverUrl}/get-blogs`,"","")
+}
+
+
+export const CityApi =async()=>{
+    return await commonApi('POST',`${serverUrl}/get-our-location-city-properties`,"","")
+}
+
 
 

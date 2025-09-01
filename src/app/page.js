@@ -4,6 +4,8 @@ import GotoTop from "./components/GotoTop";
 import RecommendedSection from "./components/recomended/RecomendedSection";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import BlogItem from "./components/BlogItem";
+import CityItem from "./components/CityItem";
 
 export default function Home() {
   
@@ -184,21 +186,9 @@ export default function Home() {
     <div className="wow fadeInUp" data-wow-delay=".2s">
         <div dir="ltr" className="swiper tf-sw-location" data-preview="6" data-tablet="3" data-mobile-sm="2" data-mobile="1" data-space-lg="8" data-space-md="8" data-space="8" data-pagination="1" data-pagination-sm="2" data-pagination-md="3" data-pagination-lg="3">
             <div className="swiper-wrapper d-flex justify-content-center">
-                <div className="swiper-slide">
-                    <div className="box-location">
-                        <a href="topmap-grid.html" className="image img-style">
-                            <img className="lazyload" data-src="images/location/location-1.jpg" src="images/location/location-1.jpg" alt="image-location" />
-                        </a>
-                        <div className="content">
-                            <div className="inner-left">
-                                <span className="sub-title fw-6">321 Property</span>
-                                <h6 className="title text-line-clamp-1 link">Kannur</h6>
-                            </div>
-                            <a href="topmap-grid.html" className="box-icon line w-44 round"><i className="icon icon-arrow-right2"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div className="swiper-slide">
+
+                <CityItem/>
+                {/* <div className="swiper-slide">
                     <div className="box-location">
                         <a href="topmap-grid.html" className="image img-style">
                             <img className="lazyload" data-src="images/location/location-2.jpg" src="images/location/location-2.jpg" alt="image-location" />
@@ -254,7 +244,7 @@ export default function Home() {
                             <a href="topmap-grid.html" className="box-icon line w-44 round"><i className="icon icon-arrow-right2"></i></a>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
             <div className="sw-pagination sw-pagination-location text-center"></div>
         </div>
@@ -461,54 +451,7 @@ export default function Home() {
         </div>
         <div dir="ltr" className="swiper tf-sw-latest wow fadeInUp" data-wow-delay=".2s" data-preview="3" data-tablet="2" data-mobile-sm="2" data-mobile="1" data-space-lg="30" data-space-md="15" data-space="15">
             <div className="swiper-wrapper">
-                <div className="swiper-slide">
-                    <a href="blog-detail.html" className="flat-blog-item hover-img">
-                        <div className="img-style">
-                            <img className="lazyload" data-src="images/blog/blog-10.jpg" src="images/blog/blog-10.jpg" alt="img-blog" />
-                            <span className="date-post">January 28, 2024</span>
-                        </div>
-                        <div className="content-box">
-                            <div className="post-author">
-                                <span className="fw-6">Jerome Bell</span>
-                                <span>Furniture</span>
-                            </div>
-                            <h5 className="title link">Building gains into housing stocks and how to trade the sector</h5>
-                            <p className="description">The average contract interest rate for 30-year fixed-rate mortgages with conforming loan balances...</p>
-                        </div>
-                    </a>
-                </div>
-                <div className="swiper-slide">
-                    <a href="blog-detail.html" className="flat-blog-item hover-img">
-                        <div className="img-style">
-                            <img className="lazyload" data-src="images/blog/blog-11.jpg" src="images/blog/blog-11.jpg" alt="img-blog" />
-                            <span className="date-post">January 28, 2024</span>
-                        </div>
-                        <div className="content-box">
-                            <div className="post-author">
-                                <span className="fw-6">Jerome Bell</span>
-                                <span>Furniture</span>
-                            </div>
-                            <h5 className="title link">Building gains into housing stocks and how to trade the sector</h5>
-                            <p className="description">The average contract interest rate for 30-year fixed-rate mortgages with conforming loan balances...</p>
-                        </div>
-                    </a>
-                </div>
-                <div className="swiper-slide">
-                    <a href="blog-detail.html" className="flat-blog-item hover-img">
-                        <div className="img-style">
-                            <img className="lazyload" data-src="images/blog/blog-12.jpg" src="images/blog/blog-12.jpg" alt="img-blog" />
-                            <span className="date-post">January 28, 2024</span>
-                        </div>
-                        <div className="content-box">
-                            <div className="post-author">
-                                <span className="fw-6">Jerome Bell</span>
-                                <span>Furniture</span>
-                            </div>
-                            <h5 className="title link">Building gains into housing stocks and how to trade the sector</h5>
-                            <p className="description">The average contract interest rate for 30-year fixed-rate mortgages with conforming loan balances...</p>
-                        </div>
-                    </a>
-                </div>
+                <BlogItem/>
             </div>
             <div className="sw-pagination sw-pagination-latest text-center"></div>
         </div>
