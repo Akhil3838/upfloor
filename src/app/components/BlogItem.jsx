@@ -28,7 +28,7 @@ function BlogItem() {
             <div className="img-style">
 <img
   className="lazyload"
-  src={`https://upfloor.xyz/public/blog/image/${blog.blog_image}`}
+  src={`https://app.upfloor.in/public/blog/image/${blog.blog_image}`}
   alt={blog.blog_title}
   style={{
     width: "615px",

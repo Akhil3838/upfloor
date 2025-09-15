@@ -92,9 +92,9 @@ function PropertyListPage() {
               </div>
 
               <div className="row">
-                <SidebarProperty />
-
-                <div className="col-xl-8 col-lg-7 flat-animate-tab">
+                {/* <SidebarProperty /> */}
+              
+                <div className="col-xl-12 col-lg-12 flat-animate-tab ">
                   <div className="tab-content">
                     <div className="tab-pane active show" id="gridLayout" role="tabpanel">
                       {/* Property Grid */}

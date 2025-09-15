@@ -126,7 +126,7 @@ console.log(property);
 </div>
 
             <ul className="icon-box">
-              <li>
+              {/* <li>
                 <a href="#" className="item">
                   <svg
                     className="icon"
@@ -145,9 +145,9 @@ console.log(property);
                     />
                   </svg>
                 </a>
-              </li>
+              </li> */}
 
-              <li>
+              {/* <li>
                 <a href="#" className="item">
                   <svg
                     className="icon"
@@ -166,7 +166,7 @@ console.log(property);
                     />
                   </svg>
                 </a>
-              </li>
+              </li> */}
 
               <li>
                 <a href="#" className="item">
@@ -189,7 +189,7 @@ console.log(property);
                 </a>
               </li>
 
-              <li>
+              {/* <li>
                 <a href="#" className="item">
                   <svg
                     className="icon"
@@ -208,7 +208,7 @@ console.log(property);
                     />
                   </svg>
                 </a>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>
@@ -634,7 +634,7 @@ console.log(property);
   </div>
 </div>
 
-                  <div className="single-property-element single-property-map">
+                  {/* <div className="single-property-element single-property-map">
   <h5 className="title fw-6">Map location</h5>
 <iframe
   className="map"
@@ -676,7 +676,7 @@ console.log(property);
       </li>
     </ul>
   </div>
-                    </div>
+                    </div> */}
                     {/* <div className="single-property-element single-property-floor">
   <h5 className="title fw-6">Floor plans</h5>
   <ul className="box-floor" id="parent-floor">
@@ -816,7 +816,7 @@ console.log(property);
       <button type="button" className="tf-btn primary">Calculator</button>
       <div className="d-flex gap-4">
         <span className="text-btn fw-6">Monthly Payment:</span>
-        <span className="text-btn fw-6 text-primary">$599.25</span>
+        <span className="text-btn fw-6 text-primary">₹599.25</span>
       </div>
     </div>
   </form>
@@ -856,7 +856,7 @@ console.log(property);
 
 
 
-                            <div className="single-property-element single-wrapper-review">
+                            {/* <div className="single-property-element single-wrapper-review">
   <h5 className="title fw-6">Guest reviews</h5>
   <form className="wrap-review">
     <ul className="box-review">
@@ -933,7 +933,6 @@ console.log(property);
         </div>
       </li>
 
-      {/* Repeat the same JSX structure for other reviews (Kristin Watson, Darrell Steward, etc.) */}
 
       <li className="list-review-item">
         <button className="tf-btn btn-line">View All Reviews</button>
@@ -941,7 +940,6 @@ console.log(property);
     </ul>
   </form>
 
-  {/* Comment Form */}
   <div className="wrap-form-comment">
     <h5 className="text-black-2">Leave A comment</h5>
     <p className="text-variant-1 mt-8">
@@ -992,7 +990,7 @@ console.log(property);
       </div>
     </div>
   </div>
-</div>
+</div> */}
 
 
 

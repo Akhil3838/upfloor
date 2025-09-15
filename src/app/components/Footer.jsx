@@ -57,7 +57,7 @@ function Footer() {
                             </li>
                             <li className="mt-12 d-flex align-items-center gap-8">
                                 <i className="icon icon-mail fs-20 text-variant-2"></i>
-                                <p className="text-white">helpdesk@upfloor.in</p>
+                                <p className="text-white">support@upfloor.in</p>
                             </li>
                         </ul>
                     </div>
@@ -68,7 +68,7 @@ function Footer() {
                         <div className="tf-collapse-content">
                             <ul className="mt-10 navigation-menu-footer">
                                 <li> <a href="topmap-list.html" className="caption-1 text-variant-2">Buy Property</a> </li>
-                                <li> <a href="seller-service.html" className="caption-1 text-variant-2">Seller Sevice</a> </li>
+                                {/* <li> <a href="seller-service.html" className="caption-1 text-variant-2">Seller Sevice</a> </li> */}
                                 <li> <a href="contact.html" className="caption-1 text-variant-2">Contact Us</a> </li>
                                 <li> <a href="blog.html" className="caption-1 text-variant-2">Blog</a> </li>
                             </ul>
@@ -77,9 +77,9 @@ function Footer() {
                 </div>
                 <div className="col-lg-4 col-md-6">
                     <div className="footer-cl-4 footer-col-block">
-                        <div className="fw-7 text-white footer-heading-mobile">Newsletter</div>
+                        <div className="fw-7 text-white footer-heading-mobile">@upfloorlive</div>
                         <div className="tf-collapse-content">
-                            <p className="mt-12 text-variant-2">Your Weekly/Monthly Dose of Knowledge and Inspiration</p>
+                            {/* <p className="mt-12 text-variant-2">Your Weekly/Monthly Dose of Knowledge and Inspiration</p> */}
                             <form className="mt-12" id="subscribe-form" action="#" method="post" acceptCharset="utf-8" data-mailchimp="true">
                                 <div id="subscribe-content">
                                     <input type="email" name="email-form" id="subscribe-email" placeholder="Your email address" />

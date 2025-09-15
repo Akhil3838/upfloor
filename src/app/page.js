@@ -41,7 +41,7 @@ export default function Home() {
           </div>
           <div className="flat-tab flat-tab-form">
 <ul className="nav-tab-form style-1 justify-content-center" role="tablist">
-  <li className="nav-tab-item" role="presentation">
+  {/* <li className="nav-tab-item" role="presentation">
     <a
       href="#forRent"
       className="nav-link-item active"
@@ -52,7 +52,7 @@ export default function Home() {
     >
       For Rent
     </a>
-  </li>
+  </li> */}
   <li className="nav-tab-item" role="presentation">
     <a
       href="#forSale"
@@ -80,12 +80,12 @@ export default function Home() {
                               <span className="current">All</span>
                               <ul className="list">
                                 <li data-value className="option selected">
-                                  All
+                                  Plot
                                 </li>
                                 <li data-value="villa" className="option">
-                                  Villa
+                                  House
                                 </li>
-                                <li data-value="studio" className="option">
+                                {/* <li data-value="studio" className="option">
                                   Studio
                                 </li>
                                 <li data-value="office" className="option">
@@ -93,7 +93,7 @@ export default function Home() {
                                 </li>
                                 <li data-value="house" className="option">
                                   House
-                                </li>
+                                </li> */}
                               </ul>
                             </div>
                           </div>
@@ -127,7 +127,7 @@ export default function Home() {
                         </div>
                       </div>
                       <div className="box-btn-advanced">
-                        <div className="form-group-4 box-filter">
+                        {/* <div className="form-group-4 box-filter">
                           <a className="tf-btn btn-line filter-advanced pull-right">
                             <span className="text-1">Search advanced</span>
                             <svg
@@ -146,7 +146,7 @@ export default function Home() {
                               />
                             </svg>
                           </a>
-                        </div>
+                        </div> */}
                         <button
                           type="submit"
                           className="tf-btn btn-search primary"
@@ -178,7 +178,8 @@ export default function Home() {
 {/* Recommended For You end */}
 
 {/* Location */}
-<section className="flat-location px-10">
+
+{/* <section className="flat-location px-10">
     <div className="box-title text-center wow fadeInUp">
         <div className="text-subtitle text-primary">Explore Cities</div>
         <h3 className="mt-4 title">Our Location For You</h3>
@@ -188,68 +189,12 @@ export default function Home() {
             <div className="swiper-wrapper d-flex justify-content-center">
 
                 <CityItem/>
-                {/* <div className="swiper-slide">
-                    <div className="box-location">
-                        <a href="topmap-grid.html" className="image img-style">
-                            <img className="lazyload" data-src="images/location/location-2.jpg" src="images/location/location-2.jpg" alt="image-location" />
-                        </a>
-                        <div className="content">
-                            <div className="inner-left">
-                                <span className="sub-title fw-6">321 Property</span>
-                                <h6 className="title text-line-clamp-1 link">Payyanur</h6>
-                            </div>
-                            <a href="topmap-grid.html" className="box-icon line w-44 round"><i className="icon icon-arrow-right2"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div className="swiper-slide">
-                    <div className="box-location">
-                        <a href="topmap-grid.html" className="image img-style">
-                            <img className="lazyload" data-src="images/location/location-3.jpg" src="images/location/location-3.jpg" alt="image-location" />
-                        </a>
-                        <div className="content">
-                            <div className="inner-left">
-                                <span className="sub-title fw-6">321 Property</span>
-                                <h6 className="title text-line-clamp-1 link">Thrikarippur</h6>
-                            </div>
-                            <a href="topmap-grid.html" className="box-icon line w-44 round"><i className="icon icon-arrow-right2"></i></a>
-                        </div>
-                    </div>
-                </div>                            
-                <div className="swiper-slide">
-                    <div className="box-location">
-                        <a href="topmap-grid.html" className="image img-style">
-                            <img className="lazyload" data-src="images/location/location-4.jpg" src="images/location/location-4.jpg" alt="image-location" />
-                        </a>
-                        <div className="content">
-                            <div className="inner-left">
-                                <span className="sub-title fw-6">321 Property</span>
-                                <h6 className="title text-line-clamp-1 link">Kasaragod</h6>
-                            </div>
-                            <a href="topmap-grid.html" className="box-icon line w-44 round"><i className="icon icon-arrow-right2"></i></a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div className="swiper-slide">
-                    <div className="box-location">
-                        <a href="topmap-grid.html" className="image img-style">
-                            <img className="lazyload" data-src="images/location/location-1.jpg" src="images/location/location-1.jpg" alt="image-location" />
-                        </a>
-                        <div className="content">
-                            <div className="inner-left">
-                                <span className="sub-title fw-6">321 Property</span>
-                                <h6 className="title text-line-clamp-1 link">Thalipparamba</h6>
-                            </div>
-                            <a href="topmap-grid.html" className="box-icon line w-44 round"><i className="icon icon-arrow-right2"></i></a>
-                        </div>
-                    </div>
-                </div> */}
             </div>
             <div className="sw-pagination sw-pagination-location text-center"></div>
         </div>
     </div>
-</section>
+</section> */}
+
 {/* End Location */}
 
 {/* Service  */}

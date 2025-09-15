@@ -2,7 +2,7 @@ import React from 'react'
 
 const Pagination = () => {
   return (
-    <ul className="wd-navigation mt-20">
+    <ul className="wd-navigation mt-20  d-flex justify-content-center">
       <li><a href="#" className="nav-item"><i className="icon icon-arr-l"></i></a></li>
       <li><a href="#" className="nav-item">1</a></li>
       <li><a href="#" className="nav-item">2</a></li>

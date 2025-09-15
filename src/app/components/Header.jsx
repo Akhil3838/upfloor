@@ -37,9 +37,9 @@ function Header() {
                         <li>
                           <a href="/propertyList">Property For Sale</a>
                         </li>
-                        <li>
+                        {/* <li>
                           <a href="seller-service.html">Seller Service</a>
-                        </li>
+                        </li> */}
                         <li>
                           <a href="/">Blog</a>
                         </li>
