@@ -25,5 +25,17 @@ export const CityApi =async()=>{
     return await commonApi('POST',`${serverUrl}/get-our-location-city-properties`,"","")
 }
 
+export const AllBlogsApi =async()=>{
+    return await commonApi('GET',`${serverUrl}/get-blog-all`,"","")
+}
+
+export const BlogDetailsApi =async(id)=>{
+    console.log(id);
+    
+    return await commonApi('GET',`${serverUrl}/get-blog-details/${id}`,"","")
+}
+
+
+
 
 

@@ -6,6 +6,7 @@ import Header from '@/app/components/Header'
 import { useParams } from 'next/navigation'
 import { propertyApi } from '@/app/services/allApi'
 import LatestProperties from '@/app/components/LatestProperties'
+import LoanCalculator from '@/app/components/LoanCalculator'
 
 function PropertyPage() {
   const { slug } = useParams(); // ✅ works in client components
@@ -459,7 +460,7 @@ console.log(property);
     <h5 className="title fw-6">Video</h5>
     <div className="img-video">
       <img
-        src="images/banner/img-video.jpg"
+        src={property?.plot_images[0].file_name}//"images/banner/img-video.jpg"
         alt="img-video"
         style={{ width: "100%", height: "auto" }}
       />
@@ -790,7 +791,7 @@ console.log(property);
   </div>
                          </div> */}
 
-                         <div className="single-property-element single-property-loan">
+                         {/* <div className="single-property-element single-property-loan">
   <h5 className="title fw-6">Loan Calculator</h5>
   <form action="#" className="box-loan-calc">
     <div className="box-top">
@@ -820,7 +821,8 @@ console.log(property);
       </div>
     </div>
   </form>
-                           </div>
+                           </div> */}
+                           <LoanCalculator/>
 
                            <div className="single-property-element single-property-nearby">
   <h5 className="title fw-6">What’s nearby?</h5>
