@@ -24,11 +24,11 @@ function BlogItem() {
     <>
       {blogs?.map((blog) => (
         <div className="swiper-slide" key={blog.id}>
-          <a href={`/#`} className="flat-blog-item hover-img">
+          <a href={`/blog/${blog.id}`} className="flat-blog-item hover-img">
             <div className="img-style">
 <img
   className="lazyload"
-  src={`https://app.upfloor.in/public/blog/image/${blog.blog_image}`}
+  src={blog.blog_image}
   alt={blog.blog_title}
   style={{
     width: "615px",
