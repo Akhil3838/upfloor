@@ -32,7 +32,7 @@ function Header() {
                     >
 <ul className="navigation clearfix">
    <li className="home "> <a href="/">Home</a> </li> 
-   <li className='current'> <a href="/propertyList">Property For Sale</a> </li> 
+   <li > <a href="/propertyList">Property For Sale</a> </li> 
    {/* <li> <a href="seller-service.html">Seller Service</a> </li> */} 
    <li> <a href="/blogList">Blog</a> </li>
     <li> <a href="/contact">Contact Us</a> </li>
