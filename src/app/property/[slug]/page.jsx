@@ -822,7 +822,7 @@ console.log(property);
     </div>
   </form>
                            </div> */}
-                           <LoanCalculator/>
+                           {/* <LoanCalculator/> */}
 
                            <div className="single-property-element single-property-nearby">
   <h5 className="title fw-6">What’s nearby?</h5>

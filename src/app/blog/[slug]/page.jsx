@@ -2,6 +2,7 @@
 import Footer from '@/app/components/Footer'
 import Header from '@/app/components/Header'
 import { BlogDetailsApi } from '@/app/services/allApi';
+import Head from 'next/head';
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 
@@ -25,9 +26,31 @@ function blogDetails() {
         blogDetails()
        }, [])
     console.log(featured);
+
+ const currentUrl = typeof window !== "undefined" ? window.location.href : "";
+
+  const shareLinks = {
+    facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`,
+    twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(blog?.blog_title || "Check this out!")}`,
+    linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`,
+    whatsapp: `https://wa.me/?text=${encodeURIComponent(blog?.blog_title + " " + currentUrl)}`,
+    pinterest: `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(currentUrl)}&media=${encodeURIComponent(blog?.blog_image)}&description=${encodeURIComponent(blog?.blog_title)}`
+  };
     
   return (
     <>
+      <Head>
+        <title>{blog?.blog_title || 'Blog Details'}</title>
+        <meta property="og:title" content={blog?.blog_title} />
+        <meta property="og:description" content={blog?.short_description} />
+        <meta property="og:image" content={blog?.blog_image} />
+        <meta property="og:url" content={currentUrl} />
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={blog?.blog_title} />
+        <meta name="twitter:description" content={blog?.short_description} />
+        <meta name="twitter:image" content={blog?.blog_image} />
+      </Head>
     <div id='wrapper'>
         <div id='pagee' className='clearfix'>
 
@@ -41,14 +64,14 @@ function blogDetails() {
     <div className="breadcrumb-content">
       <ul className="breadcrumb">
         <li>
-          <a href="index.html" className="text-white">
+          <a href="/" className="text-white">
             Home
           </a>
         </li>
         <li className="text-white">/ Pages</li>
-        <li className="text-white">/ Latest News</li>
+        <li className="text-white">/ Blog details</li>
       </ul>
-      <h1 className="text-center text-white title">Latest News</h1>
+      <h1 className="text-center text-white title">Blog details</h1>
     </div>
   </div>
 </section>
@@ -168,31 +191,31 @@ function blogDetails() {
     </ul>
   </div>
 
-  <div className="d-flex flex-wrap align-items-center gap-16">
-    <span className="font-rubik text-variant-1">Share this post:</span>
-    <ul className="d-flex flex-wrap gap-12">
-      <li>
-        <a href="#" className="box-icon line w-44 round">
-          <i className="icon icon-fb"></i>
-        </a>
-      </li>
-      <li>
-        <a href="#" className="box-icon line w-44 round">
-          <i className="icon icon-x"></i>
-        </a>
-      </li>
-      <li>
-        <a href="#" className="box-icon line w-44 round">
-          <i className="icon icon-in"></i>
-        </a>
-      </li>
-      <li>
-        <a href="#" className="box-icon line w-44 round">
-          <i className="icon icon-instargram"></i>
-        </a>
-      </li>
-    </ul>
-  </div>
+<div className="d-flex flex-wrap align-items-center gap-16">
+  <span className="font-rubik text-variant-1">Share this post:</span>
+  <ul className="d-flex flex-wrap gap-12">
+    <li>
+      <a href={shareLinks.facebook} target="_blank" rel="noopener noreferrer" className="box-icon line w-44 round">
+        <i className="icon icon-fb"></i>
+      </a>
+    </li>
+    <li>
+      <a href={shareLinks.twitter} target="_blank" rel="noopener noreferrer" className="box-icon line w-44 round">
+        <i className="icon icon-x"></i>
+      </a>
+    </li>
+    <li>
+      <a href={shareLinks.linkedin} target="_blank" rel="noopener noreferrer" className="box-icon line w-44 round">
+        <i className="icon icon-in"></i>
+      </a>
+    </li>
+    <li>
+      <a href={shareLinks.whatsapp} target="_blank" rel="noopener noreferrer" className="box-icon line w-44 round">
+        <i className="icon icon-instargram"></i>
+      </a>
+    </li>
+  </ul>
+</div>
 </div>
 
 

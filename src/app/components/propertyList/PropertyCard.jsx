@@ -72,13 +72,10 @@ const PropertyCard = ({ properties }) => {
           <div className="content-bottom  d-flex justify-content-between">
             <div className="d-flex gap-8 align-items-center">
               <div className="avatar avt-40 round">
-<img 
-  src={`https://api.dicebear.com/7.x/initials/svg?seed=${properties?.agent.charAt(0)}`} 
-  alt="avatar" 
-/>
+                <img src="images/avatar/short.png" alt="agent" />
               </div>
-              <span>{properties.agent}</span>
-                <span>{properties.phone}</span>
+              <span>Upfloor</span>
+                {/* <span>{properties.phone}</span> */}
 
             </div>
             <h6 className="price">₹{properties.price}</h6>

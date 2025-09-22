@@ -7,11 +7,18 @@ import Pagination from '../components/propertyList/Pagination'
 import SidebarProperty from '../components/propertyList/SidebarProperty'
 import { ListingApi } from '../services/allApi'
 import { useEffect, useState } from 'react'
+import GridList from '../components/propertyList/GridList'
 
 function PropertyListPage() {
   const [properties, setProperties] = useState([])
+  const [total, setTotal] = useState(0)
+  const [count,setCount] = useState(0)
+  
+  
   const [reqBody, setReqBody] = useState({
-    page: '1'
+    page: '1',
+    show:'',
+    sort:''
   })
 
   const allproperty = async (reqBody) => {
@@ -22,6 +29,9 @@ function PropertyListPage() {
       // Adjust this based on actual API structure
       const listing = res?.data?.data?.propertylisting || res?.data?.propertylisting || []
       setProperties(listing)
+      setTotal(res?.data?.data?.total_pages)
+      setCount(res?.data?.data?.count)
+      
     } catch (error) {
       console.error("Error fetching properties:", error)
     }
@@ -30,6 +40,20 @@ function PropertyListPage() {
   useEffect(() => {
     allproperty(reqBody)
   }, [reqBody])
+
+   const handlePageChange = (page) => {
+    setReqBody((prev) => ({ ...prev, page }))   // updates reqBody.page
+  }
+
+  const handleShowChange = (value) => {
+  setReqBody((prev) => ({ ...prev, show: value, page: '1' })) // reset to page 1 when changing show
+}
+
+const handleSortChange = (value) => {
+  setReqBody((prev) => ({ ...prev, sort: value, page: '1' })) // reset to page 1 when sorting
+}
+
+
 
   return (
     <>
@@ -44,7 +68,7 @@ function PropertyListPage() {
               <div className="box-title-listing">
                 <div className="box-left">
                   <h3 className="fw-8">Property Listing</h3>
-                  <p className="text">There are currently 164,814 properties.</p>
+                  <p className="text">There are currently {count} properties.</p>
                 </div>
                 <div className="box-filter-tab">
                   <ul className="nav-tab-filter" role="tablist">
@@ -72,22 +96,29 @@ function PropertyListPage() {
                       </a>
                     </li>
                   </ul>
-                  <div className="nice-select select-filter list-page" tabIndex="0">
-                    <span className="current">Show: 50</span>
-                    <ul className="list">
-                      <li data-value="1" className="option">Show: 50</li>
-                      <li data-value="2" className="option">Show: 30</li>
-                      <li data-value="3" className="option selected">Show: 10</li>
-                    </ul>
-                  </div>
-                  <div className="nice-select select-filter list-sort" tabIndex="0">
-                    <span className="current">Sort by (Default)</span>
-                    <ul className="list">
-                      <li data-value="default" className="option selected">Sort by (Default)</li>
-                      <li data-value="new" className="option">Newest</li>
-                      <li data-value="old" className="option">Oldest</li>
-                    </ul>
-                  </div>
+<div className="nice-select select-filter list-page" tabIndex="0">
+  <span className="current">Show: {reqBody.show || 50}</span>
+  <ul className="list">
+    <li onClick={() => handleShowChange(50)} className="option">Show: 50</li>
+    <li onClick={() => handleShowChange(30)} className="option">Show: 30</li>
+    <li onClick={() => handleShowChange(10)} className="option">Show: 10</li>
+  </ul>
+</div>
+
+<div className="nice-select select-filter list-sort" tabIndex="0">
+  <span className="current">
+    {reqBody.sort === "new"
+      ? "Newest"
+      : reqBody.sort === "old"
+      ? "Oldest"
+      : "Sort by (Default)"}
+  </span>
+  <ul className="list">
+    <li onClick={() => handleSortChange("default")} className="option">Sort by (Default)</li>
+    <li onClick={() => handleSortChange("new")} className="option">Newest</li>
+    <li onClick={() => handleSortChange("old")} className="option">Oldest</li>
+  </ul>
+</div>
                 </div>
               </div>
 
@@ -101,37 +132,23 @@ function PropertyListPage() {
                       <PropertyList properties={properties} />
 
                       {/* Pagination */}
-                      <Pagination />
+                      <Pagination total={total} onPageChange={handlePageChange} />
                     </div>
 
                     <div className="tab-pane" id="listLayout" role="tabpanel">
                       {/* Example static list view - replace with API mapping if needed */}
                       <div className="row">
-                        <div className="col-md-12">
-                          <div className="homelengo-box list-style-1 list-style-2 line">
-                            <div className="archive-top">
-                              <a href="property-details-v4.html" className="images-group">
-                                <div className="images images-style">
-                                  <img className="lazyload" src="images/home/house-sm-11.jpg" alt="img-property" />
-                                </div>
-                              </a>
-                            </div>
-                            <div className="archive-bottom">
-                              <h6 className="text-capitalize">
-                                <a href="property-details-v4.html" className="link">Example Property</a>
-                              </h6>
-                              <p className="description mt-20">Description goes here...</p>
-                              <h6 className="price">$7250,00</h6>
-                            </div>
-                          </div>
-                        </div>
+                        <GridList properties={properties}/>
+
                       </div>
 
-                      <ul className="wd-navigation mt-20">
+                      {/* <ul className="wd-navigation mt-20">
                         <li><a href="#" className="nav-item">1</a></li>
                         <li><a href="#" className="nav-item">2</a></li>
                         <li><a href="#" className="nav-item">3</a></li>
-                      </ul>
+                      </ul> */}
+                       <Pagination total={total} onPageChange={handlePageChange} />
+
                     </div>
                   </div>
                 </div>

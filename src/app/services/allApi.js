@@ -7,6 +7,8 @@ export const recomemdedApi =async()=>{
 }
 
 export const ListingApi =async(reqBody)=>{
+    console.log(reqBody);
+    
     return await commonApi('POST',`${serverUrl}/get-properties`,reqBody,"")
 }
 

@@ -72,9 +72,9 @@ function PropertyCard({ image, sub_type, location, bed, bath, sqrfeet, price, ag
           <div className="content-bottom d-flex justify-content-between">
             <div className="d-flex gap-8 align-items-center">
               <div className="avatar avt-40 round">
-                <img src="images/avatar/avt-png1.png" alt="agent" />
+                <img src="images/avatar/short.png" alt="agent" />
               </div>
-              <span>{agent}</span>
+              <span>Upfloor</span>
             </div>
             <h6 className="price">₹{price}</h6>
           </div>

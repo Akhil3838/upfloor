@@ -34,11 +34,11 @@ function Header() {
    <li className="home "> <a href="/">Home</a> </li> 
    <li > <a href="/propertyList">Property For Sale</a> </li> 
    {/* <li> <a href="seller-service.html">Seller Service</a> </li> */} 
-   <li> <a href="/blogList">Blog</a> </li>
+   <li> <a href="/blogs">Blog</a> </li>
     <li> <a href="/contact">Contact Us</a> </li>
      </ul>       
       </div>
-                  </nav>
+           </nav>
                   {/* Main Menu End */}
                 </div>
               </div>
@@ -68,7 +68,7 @@ function Header() {
                 </a>
 
                 <div className="flat-bt-top">
-                  <a className="tf-btn primary" href="">
+                  <a className="tf-btn primary" href="https://play.google.com/store/apps/details?id=com.upfloor.user">
                     Download App
                   </a>
                 </div>

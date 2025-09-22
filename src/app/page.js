@@ -114,7 +114,7 @@ export default function Home() {
                           </div>
                         </div>
                         {/* Keyword */}
-                        <div className="form-group-3 form-style">
+                        {/* <div className="form-group-3 form-style">
                           <label>Keyword</label>
                           <input
                             type="text"
@@ -124,7 +124,7 @@ export default function Home() {
                             title="Search for"
                             required
                           />
-                        </div>
+                        </div> */}
                       </div>
                       <div className="box-btn-advanced">
                         {/* <div className="form-group-4 box-filter">
@@ -198,7 +198,7 @@ export default function Home() {
 {/* End Location */}
 
 {/* Service  */}
-<section className="flat-section">
+{/* <section className="flat-section">
     <div className="container">
         <div className="box-title text-center wow fadeInUp">
             <div className="text-subtitle text-primary">Our Services</div>
@@ -237,10 +237,10 @@ export default function Home() {
             </div>
         </div>
     </div>
-</section>
+</section> */}
 {/* End Service */}
 
-<section className="flat-section bg-primary-new">
+{/* <section className="flat-section bg-primary-new">
     <div className="container3">
         <div className="flat-img-with-text-v2">
             <div className="content-left tf-image-box">
@@ -320,10 +320,10 @@ export default function Home() {
             </div>
         </div>
     </div>
-</section>
+</section> */}
  
  {/* Benefit */}
-<section className="mx-5 bg-primary-new radius-30">
+{/* <section className="mx-5 bg-primary-new radius-30">
     <div className="flat-img-with-text">
         <div className="content-right">
             <div className="flat-service wow fadeInUp" data-wow-delay=".2s">
@@ -362,7 +362,7 @@ export default function Home() {
             <img className="lazyload" data-src="images/banner/img-w-text1.jpg" src="images/banner/img-w-text1.jpg" alt="" />
         </div>
     </div> 
-</section>
+</section> */}
 {/* End Benefit */}
 
 {/* app advertisement */}
@@ -411,6 +411,9 @@ export default function Home() {
     </div>
 
     <GotoTop/>
+
+
+
 
     </>
   );
