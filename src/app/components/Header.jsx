@@ -44,7 +44,7 @@ function Header() {
               </div>
 
               <div className="inner-header-right header-account">
-                <a
+                {/* <a
                   href="#modalLogin"
                   data-bs-toggle="modal"
                   className="tf-btn btn-line btn-login"
@@ -65,7 +65,7 @@ function Header() {
                     />
                   </svg>
                   Quick List Property
-                </a>
+                </a> */}
 
                 <div className="flat-bt-top">
                   <a className="tf-btn primary" href="https://play.google.com/store/apps/details?id=com.upfloor.user">
