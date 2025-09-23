@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import ContactUsForm from '../components/ContactUsForm'
 
 function page() {
   return (
@@ -32,85 +33,7 @@ function page() {
   <div className="container">
     <div className="row">
       <div className="col-lg-8">
-        <div className="contact-content">
-          <h4>Wed Love To Help You</h4>
-          <p className="body-2 text-variant-1">
-            Have questions or need assistance? We're here to help! Reach out to us for support, inquiries, or feedback. Let's make your property journey seamless and successful.
-          </p>
-          <br />
-          <br />
-          <form
-            id="contactform"
-            method="post"
-            action="./contact/contact-process.php"
-            className="form-contact"
-          >
-            <div className="box grid-2">
-              <fieldset>
-                <label htmlFor="name">Full Name:</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Your name"
-                  name="name"
-                  id="name"
-                  required
-                />
-              </fieldset>
-              <fieldset>
-                <label htmlFor="email">Email Address:</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Email"
-                  name="email"
-                  id="email"
-                  required
-                />
-              </fieldset>
-            </div>
-            <div className="box grid-2">
-              <fieldset>
-                <label htmlFor="phone">Phone Numbers:</label>
-                <input
-                  type="text"
-                  className="form-control style-1"
-                  placeholder="ex 012345678"
-                  name="phone"
-                  id="phone"
-                  required
-                />
-              </fieldset>
-              <fieldset>
-                <label htmlFor="subject">Subject:</label>
-                <input
-                  type="text"
-                  className="form-control style-1"
-                  placeholder="Enter Keyword"
-                  name="subject"
-                  id="subject"
-                />
-              </fieldset>
-            </div>
-            <fieldset>
-              <label htmlFor="message">Your Message:</label>
-              <textarea
-                name="message"
-                className="form-control"
-                cols="30"
-                rows="10"
-                placeholder="Message"
-                id="message"
-                required
-              ></textarea>
-            </fieldset>
-            <div className="send-wrap">
-              <button className="tf-btn primary size-1" type="submit">
-                Send Message
-              </button>
-            </div>
-          </form>
-        </div>
+        <ContactUsForm/>
       </div>
 
       <div className="col-lg-4">

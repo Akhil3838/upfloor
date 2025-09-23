@@ -67,7 +67,7 @@ export default function RootLayout({ children }) {
 
 
             {/* popup login */}
-<div className="modal modal-account fade" id="modalLogin">
+{/* <div className="modal modal-account fade" id="modalLogin">
   <div className="modal-dialog modal-dialog-centered">
     <div className="modal-content">
       <div className="flat-account">
@@ -119,10 +119,10 @@ export default function RootLayout({ children }) {
       </div>
     </div>
   </div>
-</div>
+</div> */}
 
 {/* popup register */}
-<div className="modal modal-account fade" id="modalRegister">
+{/* <div className="modal modal-account fade" id="modalRegister">
   <div className="modal-dialog modal-dialog-centered">
     <div className="modal-content">
       <div className="flat-account">
@@ -191,7 +191,7 @@ export default function RootLayout({ children }) {
       </div>
     </div>
   </div>
-</div>
+</div> */}
 
 
 

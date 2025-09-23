@@ -377,10 +377,10 @@ export default function Home() {
                     <br />
                     <p className="">Download Our App and start listing your property today. Experience seamless selling and buying with UpFloor-the best user friendly real estate app in Kannur and Kasaragod.</p>
                 </div>
-                <a href="contact.html" className="tf-btn btn-view primary size-1 hover-btn-view">Download App <span className="icon icon-arrow-right2"></span></a>
+                <a href="https://play.google.com/store/apps/details?id=com.upfloor.user" className="tf-btn btn-view primary size-1 hover-btn-view">Download App <span className="icon icon-arrow-right2"></span></a>
             </div>
             <div className="box-right">
-                <img src="images/banner/banner.png" alt="image" />
+                <img src="/images/banner/appbanner.jpg" alt="image" />
             </div>
         </div>
     </div>

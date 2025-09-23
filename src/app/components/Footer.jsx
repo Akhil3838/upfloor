@@ -67,10 +67,10 @@ function Footer() {
                         <div className="fw-7 text-white footer-heading-mobile">Categories</div>
                         <div className="tf-collapse-content">
                             <ul className="mt-10 navigation-menu-footer">
-                                <li> <a href="topmap-list.html" className="caption-1 text-variant-2">Buy Property</a> </li>
+                                <li> <a href="/propertyList" className="caption-1 text-variant-2">Buy Property</a> </li>
                                 {/* <li> <a href="seller-service.html" className="caption-1 text-variant-2">Seller Sevice</a> </li> */}
-                                <li> <a href="contact.html" className="caption-1 text-variant-2">Contact Us</a> </li>
-                                <li> <a href="blog.html" className="caption-1 text-variant-2">Blog</a> </li>
+                                <li> <a href="/contact" className="caption-1 text-variant-2">Contact Us</a> </li>
+                                <li> <a href="/blogs" className="caption-1 text-variant-2">Blog</a> </li>
                             </ul>
                         </div>
                     </div>
@@ -102,9 +102,9 @@ function Footer() {
             <div className="content-footer-bottom">
                 <div className="copyright">© 2025 Akatsa LLP - All rights reserved.</div>
                 <ul className="menu-bottom">
-                    <li><a href="disclaimer.html">Disclaimer</a> </li>
-                    <li><a href="privacy-policy.html">Privacy Policy</a> </li>
-                    <li><a href="service-policy.html">Service Policy</a> </li>
+                    <li><a href="/disclaimer">Disclaimer</a> </li>
+                    <li><a href="/privacy">Privacy Policy</a> </li>
+                    <li><a href="service-policy">Service Policy</a> </li>
                 </ul>
             </div>
         </div>

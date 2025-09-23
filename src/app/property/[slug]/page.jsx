@@ -7,6 +7,7 @@ import { useParams } from 'next/navigation'
 import { propertyApi } from '@/app/services/allApi'
 import LatestProperties from '@/app/components/LatestProperties'
 import LoanCalculator from '@/app/components/LoanCalculator'
+import PropertyContactForm from '@/app/components/PropertyContactForm'
 
 function PropertyPage() {
   const { slug } = useParams(); // ✅ works in client components
@@ -1000,35 +1001,7 @@ console.log(property);
 <div className="col-xl-4 col-lg-5">
       <div className="single-sidebar fixed-sidebar">
         {/* Contact Form */}
-        <div className="widget-box single-property-contact">
-          <h5 className="title fw-6">Contact Us</h5>
-          <form action="#" className="contact-form">
-            <div className="ip-group">
-              <input type="text" placeholder="Jony Dane" className="form-control" />
-            </div>
-            <div className="ip-group">
-              <input type="text" placeholder="ex 0123456789" className="form-control" />
-            </div>
-            <div className="ip-group">
-              <input type="text" placeholder="themesflat@gmail.com" className="form-control" />
-            </div>
-            <div className="ip-group">
-              <textarea
-                name="message"
-                rows="4"
-                tabIndex="4"
-                placeholder="Message"
-                aria-required="true"
-              ></textarea>
-            </div>
-            <button
-              type="submit"
-              className="tf-btn btn-view primary hover-btn-view w-100"
-            >
-              Find Properties <span className="icon icon-arrow-right2"></span>
-            </button>
-          </form>
-        </div>
+        <PropertyContactForm id={slug}/>
 
         {/* Why Choose Us */}
         <div className="widget-box single-property-whychoose">

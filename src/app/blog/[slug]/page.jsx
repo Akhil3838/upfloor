@@ -40,12 +40,13 @@ function blogDetails() {
   return (
     <>
       <Head>
-        <title>{blog?.blog_title || 'Blog Details'}</title>
+        <title>{blog?.blog_title || "Blog Details"}</title>
         <meta property="og:title" content={blog?.blog_title} />
         <meta property="og:description" content={blog?.short_description} />
         <meta property="og:image" content={blog?.blog_image} />
         <meta property="og:url" content={currentUrl} />
         <meta property="og:type" content="article" />
+        {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={blog?.blog_title} />
         <meta name="twitter:description" content={blog?.short_description} />

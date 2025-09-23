@@ -38,6 +38,14 @@ export const BlogDetailsApi =async(id)=>{
 }
 
 
+// contact us
+export const contactApi =async(reqBody)=>{
+    console.log(reqBody);
+    
+    return await commonApi('POST',`${serverUrl}/contact-property`,reqBody,"")
+}
+
+
 
 
 
