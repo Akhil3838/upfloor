@@ -10,6 +10,7 @@ function ContactUsForm({ id }) {  // <-- receive property_id as prop
     property_id: id || null,
     name: '',
     email: '',
+    subject: '',
     phone: '',
     message: ''
   });
@@ -37,6 +38,7 @@ function ContactUsForm({ id }) {  // <-- receive property_id as prop
           property_id: id || null,
           name: '',
           email: '',
+          subject: '',
           phone: '',
           message: ''
         });
@@ -111,7 +113,12 @@ function ContactUsForm({ id }) {  // <-- receive property_id as prop
                 required
               />
             </fieldset>
-            <fieldset> <label htmlFor="subject">Subject:</label> <input type="text" className="form-control style-1" placeholder="Enter Keyword" name="subject" id="subject" /> </fieldset>
+            <fieldset>
+               <label htmlFor="subject">Subject:</label>
+                <input 
+                type="text" className="form-control style-1" placeholder="Enter Keyword" name="subject" id="subject"  value={reqBody.subject}
+                onChange={handleChange}/>
+                </fieldset>
           </div>
 
           <fieldset>
