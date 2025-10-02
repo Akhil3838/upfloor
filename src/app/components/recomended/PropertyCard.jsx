@@ -33,7 +33,7 @@ src={`${imageUrl}/${image}`}
 <div className="archive-bottom">
   <div className="content-top">
     <h6 className="text-capitalize">
-      <a href="property-details-v1.html" className="link">{sub_type}</a>
+      <a href={`/property/${id}`} className="link">{sub_type}</a>
     </h6>
 
     {property_type?.toLowerCase() === "residential" ? (

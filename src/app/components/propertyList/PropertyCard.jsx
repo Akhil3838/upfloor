@@ -33,7 +33,7 @@ const PropertyCard = ({ properties }) => {
 <div className="archive-bottom">
   <div className="content-top">
     <h6 className="text-capitalize">
-      <a href="property-details-v1.html" className="link">{properties.sub_type}</a>
+      <a href={`/property/${properties.id}`} className="link">{properties.sub_type}</a>
     </h6>
 
     {properties.property_type?.toLowerCase() === "residential" ? (
