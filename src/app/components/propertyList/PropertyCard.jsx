@@ -1,3 +1,4 @@
+import { imageUrl } from '@/app/services/serverUrl'
 import Link from 'next/link'
 import React from 'react'
 
@@ -9,7 +10,7 @@ const PropertyCard = ({ properties }) => {
             <div className="images-style">
 <img 
   className="lazyload" 
-  src={properties.image} 
+  src={`${imageUrl}/${properties.image}`} 
   alt={properties.sub_type}
   style={{ width: "100%", height: "300px", objectFit: "cover", borderRadius: "8px" }} 
  
