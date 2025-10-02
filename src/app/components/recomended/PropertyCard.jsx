@@ -10,7 +10,8 @@ function PropertyCard({ image, sub_type, location, bed, bath, sqrfeet, price, ag
             <div className="images-style">
 <img 
   className="lazyload" 
-  src={image} 
+src={`${imageUrl}/${image}`} 
+
   alt={sub_type} 
   style={{ width: "100%", height: "300px", objectFit: "cover", borderRadius: "8px" }} 
 />
