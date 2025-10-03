@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import { ListingApi } from '../services/allApi'
+import { imageUrl } from '../services/serverUrl'
 
 function LatestProperties() {
   const [latestProperties, setLatestProperties] = useState([])
@@ -28,7 +29,9 @@ function LatestProperties() {
           <li className="latest-property-item" key={idx}>
             <a href={`/property/${p?._id}`} className="images-style">
               <img 
-                src={p?.image || "images/home/default.jpg"} 
+                // src={p?.image || "images/home/default.jpg"} 
+                  src={`${imageUrl}/${p.image}`} 
+                
                 alt={p?.sub_type || "property"} 
               />
             </a>

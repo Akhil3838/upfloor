@@ -1,3 +1,4 @@
+import { imageUrl } from '@/app/services/serverUrl'
 import React from 'react'
 
 function GridCard({ properties }) {
@@ -7,7 +8,7 @@ function GridCard({ properties }) {
                                 <div className="archive-top">
                                   <a href={`/property/${properties.id}`}className="images-group">
                                     <div className="images images-style">
-                                      <img className="lazyload"src={properties.image}  alt={properties.sub_type} 
+                                      <img className="lazyload" src={`${imageUrl}/${properties.image}`}  alt={properties.sub_type} 
                                       style={{ width: "100%", height: "300px", objectFit: "cover", borderRadius: "8px" }}/>
                                     </div>
                                   </a>
