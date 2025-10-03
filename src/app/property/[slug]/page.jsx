@@ -12,6 +12,7 @@ import PropertyContactForm from '@/app/components/PropertyContactForm'
 function PropertyPage() {
   const { slug } = useParams(); // ✅ works in client components
   const [property,setProperty]=useState()
+   const [pageUrl, setPageUrl] = useState("");
 
   const fetchProperty = async () => {
     try {
@@ -29,6 +30,12 @@ console.log(property);
       fetchProperty();
     }
   }, [slug]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setPageUrl(window.location.href);
+    }
+  }, []);
   return (
  <>
    <div id='wrapper'>
@@ -1005,7 +1012,7 @@ console.log(property);
            {/* WhatsApp Share Button */}
 <div className="widget-box single-property-contact d-flex flex-column align-items-center">
   <a
-    href={`https://api.whatsapp.com/send?text=Check out this property: ${typeof window !== "undefined" ? window.location.href : ""}`}
+    href={`https://api.whatsapp.com/send?text=Check out this property: ${encodeURIComponent(pageUrl)}`}
     target="_blank"
     rel="noopener noreferrer"
     className="btn btn-success rounded-circle d-flex justify-content-center align-items-center shadow"
