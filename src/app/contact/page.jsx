@@ -19,7 +19,7 @@ function page() {
     <div className="breadcrumb-content">
       <ul className="breadcrumb">
         <li><a href="/" className="text-white">Home</a></li>
-        <li className="text-white">/ Pages</li>
+        {/* <li className="text-white">/ Pages</li> */}
         <li className="text-white">/ Contact Us</li>
       </ul>
       <h1 className="text-center text-white title">Contact Us</h1>
