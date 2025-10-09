@@ -59,7 +59,7 @@ function blogDetails() {
 {/* Page Title */}
 <section
   className="flat-title-page"
-  style={{ backgroundImage: "url(images/page-title/page-title-2.jpg)" }}
+  style={{ backgroundImage: "url(images/banner/bannerlast.png)" }}
 >
   <div className="container">
     <div className="breadcrumb-content">
