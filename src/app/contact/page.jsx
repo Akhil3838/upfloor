@@ -50,14 +50,14 @@ function page() {
             <li className="box">
               <h6 className="title">Infomation:</h6>
               <p className="text-variant-1">
-                +91 77362 77630, +91 77365 72630
-                <br /> helpdesk@upfloor.in
+                +91 77362 77630, +919188184996
+                <br /> support@upfloor.in
               </p>
             </li>
             <li className="box">
               <h6 className="title">Opentime:</h6>
               <p className="text-variant-1">
-                Monay - Sunday: 10:00 AM - 6:00 PM
+                Monay - Sunday: 10:00 AM - 7:00 PM
                 <br />
               </p>
             </li>
