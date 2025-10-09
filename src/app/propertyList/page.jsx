@@ -12,28 +12,29 @@ import GridList from '../components/propertyList/GridList'
 function PropertyListPage() {
   const [properties, setProperties] = useState([])
   const [total, setTotal] = useState(0)
-  const [count,setCount] = useState(0)
-  
-  
+  const [count, setCount] = useState(0)
+  const [loading, setLoading] = useState(false) // 👈 New loading state
+
   const [reqBody, setReqBody] = useState({
     page: '1',
-    show:'',
-    sort:''
+    show: '',
+    sort: ''
   })
 
   const allproperty = async (reqBody) => {
     try {
+      setLoading(true) // 👈 Show loader before API call
       const res = await ListingApi(reqBody)
       console.log("API response:", res)
 
-      // Adjust this based on actual API structure
       const listing = res?.data?.data?.propertylisting || res?.data?.propertylisting || []
       setProperties(listing)
       setTotal(res?.data?.data?.total_pages)
       setCount(res?.data?.data?.count)
-      
     } catch (error) {
       console.error("Error fetching properties:", error)
+    } finally {
+      setLoading(false) // 👈 Hide loader after API call
     }
   }
 
@@ -41,23 +42,31 @@ function PropertyListPage() {
     allproperty(reqBody)
   }, [reqBody])
 
-   const handlePageChange = (page) => {
-    setReqBody((prev) => ({ ...prev, page }))   // updates reqBody.page
+  const handlePageChange = (page) => {
+    setReqBody((prev) => ({ ...prev, page }))
   }
 
   const handleShowChange = (value) => {
-  setReqBody((prev) => ({ ...prev, show: value, page: '1' })) // reset to page 1 when changing show
-}
+    setReqBody((prev) => ({ ...prev, show: value, page: '1' }))
+  }
 
-const handleSortChange = (value) => {
-  setReqBody((prev) => ({ ...prev, sort: value, page: '1' })) // reset to page 1 when sorting
-}
-
-
+  const handleSortChange = (value) => {
+    setReqBody((prev) => ({ ...prev, sort: value, page: '1' }))
+  }
 
   return (
     <>
-      <div className='wrapper'>
+      {/* Loader Section */}
+      {loading && (
+        <div className="preload preload-container">
+          <div className="preload-logo">
+            <div className="spinner"></div>
+            <span className="icon icon-villa-fill"></span>
+          </div>
+        </div>
+      )}
+
+      <div className={`wrapper ${loading ? 'blur-sm pointer-events-none' : ''}`}>
         <div id='pagee' className='clearfix'>
           {/* header */}
           <Header />
@@ -65,103 +74,91 @@ const handleSortChange = (value) => {
 
           <section className='flat-section flat-recommended flat-sidebar'>
             <div className='container'>
-              <div className="box-title-listing">
-                <div className="box-left">
-                  <h3 className="fw-8">Property Listing</h3>
-                  <p className="text">There are currently {count} properties.</p>
+              <div className='box-title-listing'>
+                <div className='box-left'>
+                  <h3 className='fw-8'>Property Listing</h3>
+                  <p className='text'>There are currently {count} properties.</p>
                 </div>
-                <div className="box-filter-tab">
-                  <ul className="nav-tab-filter" role="tablist">
-                    <li className="nav-tab-item" role="presentation">
+
+                <div className='box-filter-tab'>
+                  <ul className='nav-tab-filter' role='tablist'>
+                    <li className='nav-tab-item' role='presentation'>
                       <a
-                        href="#gridLayout"
-                        className="nav-link-item active"
-                        data-bs-toggle="tab"
-                        role="tab"
-                        aria-selected="true"
+                        href='#gridLayout'
+                        className='nav-link-item active'
+                        data-bs-toggle='tab'
+                        role='tab'
+                        aria-selected='true'
                       >
                         Grid
                       </a>
                     </li>
-                    <li className="nav-tab-item" role="presentation">
+                    <li className='nav-tab-item' role='presentation'>
                       <a
-                        href="#listLayout"
-                        className="nav-link-item"
-                        data-bs-toggle="tab"
-                        role="tab"
-                        aria-selected="false"
-                        tabIndex="-1"
+                        href='#listLayout'
+                        className='nav-link-item'
+                        data-bs-toggle='tab'
+                        role='tab'
+                        aria-selected='false'
+                        tabIndex='-1'
                       >
                         List
                       </a>
                     </li>
                   </ul>
-<div className="nice-select select-filter list-page" tabIndex="0">
-  <span className="current">Show: {reqBody.show || 50}</span>
-  <ul className="list">
-    <li onClick={() => handleShowChange(50)} className="option">Show: 50</li>
-    <li onClick={() => handleShowChange(30)} className="option">Show: 30</li>
-    <li onClick={() => handleShowChange(10)} className="option">Show: 10</li>
-  </ul>
-</div>
 
-<div className="nice-select select-filter list-sort" tabIndex="0">
-  <span className="current">
-    {reqBody.sort === "new"
-      ? "Newest"
-      : reqBody.sort === "old"
-      ? "Oldest"
-      : "Sort by (Default)"}
-  </span>
-  <ul className="list">
-    <li onClick={() => handleSortChange("default")} className="option">Sort by (Default)</li>
-    <li onClick={() => handleSortChange("new")} className="option">Newest</li>
-    <li onClick={() => handleSortChange("old")} className="option">Oldest</li>
-  </ul>
-</div>
+                  {/* Show filter */}
+                  <div className='nice-select select-filter list-page' tabIndex='0'>
+                    <span className='current'>Show: {reqBody.show || 50}</span>
+                    <ul className='list'>
+                      <li onClick={() => handleShowChange(50)} className='option'>Show: 50</li>
+                      <li onClick={() => handleShowChange(30)} className='option'>Show: 30</li>
+                      <li onClick={() => handleShowChange(10)} className='option'>Show: 10</li>
+                    </ul>
+                  </div>
+
+                  {/* Sort filter */}
+                  <div className='nice-select select-filter list-sort' tabIndex='0'>
+                    <span className='current'>
+                      {reqBody.sort === 'new'
+                        ? 'Newest'
+                        : reqBody.sort === 'old'
+                          ? 'Oldest'
+                          : 'Sort by (Default)'}
+                    </span>
+                    <ul className='list'>
+                      <li onClick={() => handleSortChange('default')} className='option'>Sort by (Default)</li>
+                      <li onClick={() => handleSortChange('new')} className='option'>Newest</li>
+                      <li onClick={() => handleSortChange('old')} className='option'>Oldest</li>
+                    </ul>
+                  </div>
                 </div>
               </div>
 
-              <div className="row">
-                {/* <SidebarProperty /> */}
-              
-                <div className="col-xl-12 col-lg-12 flat-animate-tab ">
-                  <div className="tab-content">
-                    <div className="tab-pane active show" id="gridLayout" role="tabpanel">
-                      {/* Property Grid */}
+              <div className='row'>
+                <div className='col-xl-12 col-lg-12 flat-animate-tab'>
+                  <div className='tab-content'>
+                    <div className='tab-pane active show' id='gridLayout' role='tabpanel'>
                       <PropertyList properties={properties} />
-
-                      {/* Pagination */}
                       <Pagination total={total} onPageChange={handlePageChange} />
                     </div>
 
-                    <div className="tab-pane" id="listLayout" role="tabpanel">
-                      {/* Example static list view - replace with API mapping if needed */}
-                      <div className="row">
-                        <GridList properties={properties}/>
-
+                    <div className='tab-pane' id='listLayout' role='tabpanel'>
+                      <div className='row'>
+                        <GridList properties={properties} />
                       </div>
-
-                      {/* <ul className="wd-navigation mt-20">
-                        <li><a href="#" className="nav-item">1</a></li>
-                        <li><a href="#" className="nav-item">2</a></li>
-                        <li><a href="#" className="nav-item">3</a></li>
-                      </ul> */}
-                       <Pagination total={total} onPageChange={handlePageChange} />
-
+                      <Pagination total={total} onPageChange={handlePageChange} />
                     </div>
                   </div>
                 </div>
-
               </div>
-
             </div>
           </section>
 
-          {/* footer */}
           <Footer />
         </div>
       </div>
+
       <GotoTop />
     </>
   )

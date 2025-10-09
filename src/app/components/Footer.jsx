@@ -7,7 +7,7 @@ function Footer() {
     <div className="top-footer">
         <div className="container">
             <div className="content-footer-top">
-                <div className="footer-logo"><a href="index.html"><img src="images/logo/logo-footer@2x.png" alt="logo" width="166" height="48" /></a></div>
+                <div className="footer-logo"><a href="/"><img src="images/logo/logo-footer@2x.png" alt="logo" width="166" height="48" /></a></div>
                 <div className="wd-social">
                     <span>Follow Us:</span>
                     <ul className="list-social d-flex align-items-center">
@@ -52,8 +52,8 @@ function Footer() {
                             </li>
                             <li className="mt-12 d-flex align-items-center gap-8">
                                 <i className="icon icon-phone2 fs-20 text-variant-2"></i>
-                                <a href="tel:+91 77362 77630" className="text-white caption-1">+91 77362 77630</a>
-                                <a href="tel:+91 77365 72630" className="text-white caption-1">+91 77365 72630</a>
+                                <a href="tel:+919188184996" className="text-white caption-1">+919188184996</a>
+                                <a href="tel:+91 77365 72630" className="text-white caption-1">+917736572630</a>
                             </li>
                             <li className="mt-12 d-flex align-items-center gap-8">
                                 <i className="icon icon-mail fs-20 text-variant-2"></i>
@@ -77,17 +77,20 @@ function Footer() {
                 </div>
                 <div className="col-lg-4 col-md-6">
                     <div className="footer-cl-4 footer-col-block">
-                        <div className="fw-7 text-white footer-heading-mobile">@upfloorlive</div>
+                        <div className="fw-7 text-white footer-heading-mobile">support@upfloor.in</div>
                         <div className="tf-collapse-content">
                             {/* <p className="mt-12 text-variant-2">Your Weekly/Monthly Dose of Knowledge and Inspiration</p> */}
                             <form className="mt-12" id="subscribe-form" action="#" method="post" acceptCharset="utf-8" data-mailchimp="true">
                                 <div id="subscribe-content">
-                                    <input type="email" name="email-form" id="subscribe-email" placeholder="Your email address" />
-                                    <button type="button" id="subscribe-button" className="button-subscribe">
+                                    {/* <input type="email" name="email-form" id="subscribe-email" placeholder="Your email address" /> */}
+                                    {/* <button type="button" id="subscribe-button" className="button-subscribe">
                                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M5.00044 9.99935L2.72461 2.60352C8.16867 4.18685 13.3024 6.68806 17.9046 9.99935C13.3027 13.3106 8.16921 15.8118 2.72544 17.3952L5.00044 9.99935ZM5.00044 9.99935H11.2504" stroke="#1563DF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                         </svg>
-                                    </button>
+                                    </button> */}
+                                    {/* <span className='caption-1 text-variant-2 fw-bold'>Open time:</span> <br /> */}
+                                    <span className="caption-1 text-variant-2">Monday - Saturday: 10:00 AM - 7:00 PM</span> <br />
+
                                 </div>
                                 <div id="subscribe-msg"></div>
                             </form>

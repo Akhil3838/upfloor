@@ -44,7 +44,6 @@ function page() {
             Home
           </a>
         </li>
-        <li className="text-white">/ Pages</li>
         <li className="text-white">/ Blogs</li>
       </ul>
       <h1 className="text-center text-white title">Blogs</h1>
