@@ -1040,7 +1040,7 @@ console.log(property);
     {/* Contact Us Button */}
     <div className="widget-box single-property-contact d-flex flex-column align-items-center">
       <a
-href={`https://api.whatsapp.com/send?text=Check out this property: ${encodeURIComponent(pageUrl)}`}
+href={`https://api.whatsapp.com/send?phone=917736572630&text=${encodeURIComponent("I'm interested in this property. Please share more details: " + pageUrl)}`}
         target="_blank"
         rel="noopener noreferrer"
         className="btn btn-success rounded-circle d-flex justify-content-center align-items-center shadow"
