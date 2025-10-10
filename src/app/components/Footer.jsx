@@ -7,7 +7,7 @@ function Footer() {
     <div className="top-footer">
         <div className="container">
             <div className="content-footer-top">
-                <div className="footer-logo"><a href="/"><img src="images/logo/logo-footer@2x.png" alt="logo" width="166" height="48" /></a></div>
+                <div className="footer-logo"><a href="/"><img src="/images/logo/logo-footer@2x.png" alt="logo" width="166" height="48" /></a></div>
                 <div className="wd-social">
                     <span>Follow Us:</span>
                     <ul className="list-social d-flex align-items-center">
