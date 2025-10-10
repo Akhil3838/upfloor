@@ -13,7 +13,7 @@ function PropertyPage() {
   const { slug } = useParams(); // ✅ works in client components
   const [property,setProperty]=useState()
    const [pageUrl, setPageUrl] = useState("");
-
+const isMobile = /Mobi|Android/i.test(navigator.userAgent);
   const fetchProperty = async () => {
     try {
       const result = await propertyApi(slug);
@@ -1040,8 +1040,10 @@ console.log(property);
     {/* Contact Us Button */}
     <div className="widget-box single-property-contact d-flex flex-column align-items-center">
       <a
-href={`https://api.whatsapp.com/send?phone=917736572630&text=${encodeURIComponent("I'm interested in this property. Please share more details: " + pageUrl)}`}
-        target="_blank"
+href={isMobile 
+    ? `https://wa.me/917736572630?text=${encodeURIComponent("I'm interested in this property. Please share more details: " + pageUrl)}`
+    : `https://web.whatsapp.com/send?phone=917736572630&text=${encodeURIComponent("I'm interested in this property. Please share more details: " + pageUrl)}`}
+       target="_blank"
         rel="noopener noreferrer"
         className="btn btn-success rounded-circle d-flex justify-content-center align-items-center shadow"
         style={{
