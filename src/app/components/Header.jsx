@@ -102,7 +102,7 @@ function Header() {
             </a>
           </div>
           <div className="bottom-canvas">
-            <div className="login-box flex align-center">
+            {/* <div className="login-box flex align-center">
               <a href="#modalLogin" data-bs-toggle="modal">
                 Login
               </a>
@@ -110,7 +110,7 @@ function Header() {
               <a href="#modalRegister" data-bs-toggle="modal">
                 Register
               </a>
-            </div>
+            </div> */}
             <div className="menu-outer"></div>
             <div className="button-mobi-sell">
               <a className="tf-btn primary" href="add-property.html">
@@ -120,11 +120,11 @@ function Header() {
             <div className="mobi-icon-box">
               <div className="box d-flex align-items-center">
                 <span className="icon icon-phone2"></span>
-                <div>1-333-345-6868</div>
+                <div>+919188184996</div>
               </div>
               <div className="box d-flex align-items-center">
                 <span className="icon icon-mail"></span>
-                <div>themesflat@gmail.com</div>
+                <div>support@upfloor.in </div>
               </div>
             </div>
           </div>
