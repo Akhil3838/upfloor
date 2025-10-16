@@ -112,11 +112,11 @@ function Header() {
               </a>
             </div> */}
             <div className="menu-outer"></div>
-            <div className="button-mobi-sell">
+            {/* <div className="button-mobi-sell">
               <a className="tf-btn primary" href="add-property.html">
                 Submit Property
               </a>
-            </div>
+            </div> */}
             <div className="mobi-icon-box">
               <div className="box d-flex align-items-center">
                 <span className="icon icon-phone2"></span>
