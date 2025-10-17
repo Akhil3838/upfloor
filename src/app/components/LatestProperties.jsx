@@ -27,7 +27,7 @@ function LatestProperties() {
       <ul>
         {latestProperties.map((p, idx) => (
           <li className="latest-property-item" key={idx}>
-            <a href={`/property/${p?._id}`} className="images-style">
+            <a href={`/property/${p?.id}`} className="images-style">
               <img 
                 // src={p?.image || "images/home/default.jpg"} 
                   src={`${imageUrl}/${p.image}`} 

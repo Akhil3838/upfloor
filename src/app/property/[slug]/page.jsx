@@ -10,55 +10,58 @@ import LoanCalculator from '@/app/components/LoanCalculator'
 import PropertyContactForm from '@/app/components/PropertyContactForm'
 
 function PropertyPage() {
-  const { slug } = useParams(); // ✅ works in client components
-  const [property,setProperty]=useState()
-   const [pageUrl, setPageUrl] = useState("");
-const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+  const { slug } = useParams()
+  const [property, setProperty] = useState()
+  const [pageUrl, setPageUrl] = useState("")
+  const [isMobile, setIsMobile] = useState(false)
+
+  // ✅ Check for mobile only in browser
+  useEffect(() => {
+    if (typeof navigator !== "undefined") {
+      setIsMobile(/Mobi|Android/i.test(navigator.userAgent))
+    }
+  }, [])
+
   const fetchProperty = async () => {
     try {
-      const result = await propertyApi(slug);
-      console.log("Fetched property:", result);
-      setProperty(result.data.data);
+      const result = await propertyApi(slug)
+      setProperty(result.data.data)
     } catch (error) {
-      console.error("Error fetching property:", error);
+      console.error("Error fetching property:", error)
     }
-  };
-console.log(property);
+  }
 
   useEffect(() => {
     if (slug) {
-      fetchProperty();
+      fetchProperty()
     }
-  }, [slug]);
-
-  const handleShare = async () => {
-  const shareData = {
-    title: property?.property?.sub_type || "Property Details",
-    text: `Check out this property: ${property?.property?.sub_type} for ₹${property?.property?.price}/month`,
-    url: pageUrl || window.location.href,
-  };
-
-  // ✅ Use native browser share if available (mobile/tablet)
-  if (navigator.share) {
-    try {
-      await navigator.share(shareData);
-      console.log("Shared successfully!");
-    } catch (err) {
-      console.error("Error sharing:", err);
-    }
-  } else {
-    // ✅ Fallback: Copy URL to clipboard
-    navigator.clipboard.writeText(pageUrl || window.location.href);
-    alert("🔗 Link copied to clipboard!");
-  }
-};
-
+  }, [slug])
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      setPageUrl(window.location.href);
+      setPageUrl(window.location.href)
     }
-  }, []);
+  }, [])
+
+  const handleShare = async () => {
+    const shareData = {
+      title: property?.property?.sub_type || "Property Details",
+      text: `Check out this property: ${property?.property?.sub_type} for ₹${property?.property?.price}/month`,
+      url: pageUrl || window.location.href,
+    }
+
+    if (typeof navigator !== "undefined" && navigator.share) {
+      try {
+        await navigator.share(shareData)
+      } catch (err) {
+        console.error("Error sharing:", err)
+      }
+    } else if (typeof navigator !== "undefined" && navigator.clipboard) {
+      navigator.clipboard.writeText(pageUrl || window.location.href)
+      alert("🔗 Link copied to clipboard!")
+    }
+  }
+
   return (
  <>
    <div id='wrapper'>
