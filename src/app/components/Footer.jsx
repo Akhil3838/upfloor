@@ -106,8 +106,8 @@ function Footer() {
                 <div className="copyright">© 2025 Akatsa LLP - All rights reserved.</div>
                 <ul className="menu-bottom">
                     <li><a href="/disclaimer">Disclaimer</a> </li>
-                    <li><a href="/privacy">Privacy Policy</a> </li>
-                    <li><a href="service-policy">Service Policy</a> </li>
+                    <li><a href="/privacy-policies">Privacy Policy</a> </li>
+                    <li><a href="/service-policy">Service Policy</a> </li>
                 </ul>
             </div>
         </div>
