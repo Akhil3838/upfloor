@@ -42,9 +42,10 @@ function PropertyListPage() {
     allproperty(reqBody)
   }, [reqBody])
 
-  const handlePageChange = (page) => {
-    setReqBody((prev) => ({ ...prev, page }))
-  }
+const handlePageChange = (page) => {
+  setReqBody((prev) => ({ ...prev, page }))
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
 
   const handleShowChange = (value) => {
     setReqBody((prev) => ({ ...prev, show: value, page: '1' }))
