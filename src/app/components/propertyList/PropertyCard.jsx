@@ -1,138 +1,88 @@
-'use client'
-import React, { useState } from 'react'
 import { imageUrl } from '@/app/services/serverUrl'
 import Link from 'next/link'
-
-// LazyImage component for smooth image loading
-const LazyImage = ({ src, alt, style }) => {
-  const [loaded, setLoaded] = useState(false)
-
-  return (
-    <div style={{ position: 'relative', ...style, overflow: 'hidden' }}>
-      {/* Placeholder while loading */}
-      {!loaded && (
-        <div
-          style={{
-            backgroundColor: '#f0f0f0',
-            width: '100%',
-            height: '100%',
-            position: 'absolute',
-            top: 0,
-            left: 0,
-          }}
-        />
-      )}
-      <img
-        src={src}
-        alt={alt}
-        style={{
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          borderRadius: '8px',
-          opacity: loaded ? 1 : 0,
-          transition: 'opacity 0.5s ease-in-out',
-        }}
-        onLoad={() => setLoaded(true)}
-        loading="lazy"
-      />
-    </div>
-  )
-}
+import React from 'react'
 
 const PropertyCard = ({ properties }) => {
   return (
-    <div className="homelengo-box">
-      <div className="archive-top">
-        <Link href={`/property/${properties.id}`} className="images-group">
-          <div className="images-style">
-            <LazyImage
-              src={`${imageUrl}/${properties.image}`}
-              alt={properties.sub_type}
-              style={{ width: '100%', height: '300px' }}
-            />
-          </div>
-          <div className="top">
-            <ul className="d-flex gap-6">
-              <li className="flag-tag primary">Featured</li>
-              <li className="flag-tag style-1">For Sale</li>
-            </ul>
-          </div>
-          <div className="bottom">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path
-                d="M10 7C10..."
-                stroke="white"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            {properties.location}
-          </div>
-        </Link>
-      </div>
-
-      <div className="archive-bottom">
-        <div className="content-top">
-          <h6 className="text-capitalize">
-            <Link href={`/property/${properties.id}`} className="link">
-              {properties.sub_type}
-            </Link>
-          </h6>
-
-          {properties.property_type?.toLowerCase() === 'residential' ? (
-            <ul className="meta-list">
-              {properties.bed && (
-                <li className="item">
-                  <i className="icon icon-bed"></i> Beds:{' '}
-                  <span className="fw-6">{properties.bed}</span>
-                </li>
-              )}
-              {properties.bath && (
-                <li className="item">
-                  <i className="icon icon-bath"></i> Baths:{' '}
-                  <span className="fw-6">{properties.bath}</span>
-                </li>
-              )}
-              <li className="item">
-                <i className="icon icon-sqft"></i> Sqft:{' '}
-                <span className="fw-6">{properties.sqrfeet}</span>
-              </li>
-            </ul>
-          ) : (
-            <ul className="meta-list">
-              {properties.plot_facing && (
-                <li className="item">
-                  <i className="icon icon-bed"></i> Plot Facing:{' '}
-                  <span className="fw-6">{properties.plot_facing}</span>
-                </li>
-              )}
-              {properties.no_of_open_sides && (
-                <li className="item">
-                  <i className="icon icon-bath"></i> Open Sides:{' '}
-                  <span className="fw-6">{properties.no_of_open_sides}</span>
-                </li>
-              )}
-              <li className="item">
-                <i className="icon icon-sqft"></i> Cent:{' '}
-                <span className="fw-6">{properties.cent}</span>
-              </li>
-            </ul>
-          )}
-        </div>
-
-        <div className="content-bottom d-flex justify-content-between">
-          <div className="d-flex gap-8 align-items-center">
-            <div className="avatar avt-40 round">
-              <img src="images/avatar/short.png" alt="agent" />
+      <div className="homelengo-box">
+        <div className="archive-top">
+          <a href={`/property/${properties.id}`} className="images-group">
+            <div className="images-style">
+<img 
+  className="lazyload" 
+  src={`${imageUrl}/${properties.image}`} 
+  alt={properties.sub_type}
+  style={{ width: "100%", height: "300px", objectFit: "cover", borderRadius: "8px" }} 
+ 
+/>
             </div>
-            <span>Upfloor</span>
+            <div className="top">
+              <ul className="d-flex gap-6">
+                <li className="flag-tag primary">Featured</li>
+                <li className="flag-tag style-1">For Sale</li>
+              </ul>
+            </div>
+            <div className="bottom">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M10 7C10..." stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              {properties.location}
+            </div>
+          </a>
+        </div>
+<div className="archive-bottom">
+  <div className="content-top">
+    <h6 className="text-capitalize">
+      <a href={`/property/${properties.id}`} className="link">{properties.sub_type}</a>
+    </h6>
+
+    {properties.property_type?.toLowerCase() === "residential" ? (
+      <ul className="meta-list">
+        {properties.bed && (
+          <li className="item">
+            <i className="icon icon-bed"></i> Beds: <span className="fw-6">{properties.bed}</span>
+          </li>
+        )}
+        {properties.bath && (
+          <li className="item">
+            <i className="icon icon-bath"></i> Baths: <span className="fw-6">{properties.bath}</span>
+          </li>
+        )}
+        <li className="item">
+          <i className="icon icon-sqft"></i> Sqft: <span className="fw-6">{properties.sqrfeet}</span>
+        </li>
+      </ul>
+    ) : (
+      <ul className="meta-list">
+        {properties.plot_facing && (
+          <li className="item">
+            <i className="icon icon-bed"></i> Plot Facing: <span className="fw-6">{properties.plot_facing}</span>
+          </li>
+        )}
+        {properties.no_of_open_sides && (
+          <li className="item">
+            <i className="icon icon-bath"></i> Open Sides: <span className="fw-6">{properties.no_of_open_sides}</span>
+          </li>
+        )}
+        <li className="item">
+          <i className="icon icon-sqft"></i> Cent: <span className="fw-6">{properties.cent}</span>
+        </li>
+      </ul>
+    )}
+  </div>
+          <div className="content-bottom  d-flex justify-content-between">
+            <div className="d-flex gap-8 align-items-center">
+              <div className="avatar avt-40 round">
+                <img src="images/avatar/short.png" alt="agent" />
+              </div>
+              <span>Upfloor</span>
+                {/* <span>{properties.phone}</span> */}
+
+            </div>
+            <h6 className="price">₹{properties.price}</h6>
           </div>
-          <h6 className="price">₹{properties.price}</h6>
         </div>
       </div>
-    </div>
   )
 }
 
