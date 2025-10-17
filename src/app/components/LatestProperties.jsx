@@ -38,7 +38,7 @@ function LatestProperties() {
 
             <div className="content">
               <div className="text-capitalize text-btn">
-                <a href={`/property/${p?._id}`} className="link">
+                <a href={`/property/${p?.id}`} className="link">
                   {p?.sub_type}
                 </a>
               </div>
