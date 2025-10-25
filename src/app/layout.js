@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
+import RedirectIndex from "./components/RedirectIndex";
 
 // Google fonts
 const geistSans = Geist({
@@ -44,7 +45,7 @@ export default function RootLayout({ children }) {
             <span className="icon icon-villa-fill"></span>
           </div>
         </div>
-
+<RedirectIndex/>
         {children}
 
         {/* ========= JS Scripts ========= */}
